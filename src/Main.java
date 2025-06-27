@@ -1,55 +1,34 @@
-import java.io.IOException;
-
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
+
 public class Main extends Application {
     private static Scene scene;
-  
-    public static void main(String[] args) {
-        launch();
-    }
 
     @Override
     public void start(Stage stage) throws IOException {
-        StartPane initialPane = new StartPane();
-        scene = new Scene(initialPane, 900, 650);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
+        scene = new Scene(loadFXML("start"), 900, 650);
         stage.setTitle("Grade Calculator");
         stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         stage.show();
-
     }
 
-    public static void setRoot(String paneType) {
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
 
-        try {
-            Parent newRoot = null;
-            switch (paneType.toLowerCase()) {
-                case "start":
-                    newRoot = new StartPane();
-                    break;
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
 
-                case "class info":
-                    newRoot = new ClassInfoPane();
-                    break;
-
-                default:
-                    System.err.println("Unknown pane type: " + paneType);
-                    return;
-            }
-
-            if (newRoot != null) {
-                scene.setRoot(newRoot);
-                System.out.println("New Scene: " + newRoot);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Unable to Set New Scene");
-        }
+    public static void main(String[] args) {
+        launch(args);
     }
 }
