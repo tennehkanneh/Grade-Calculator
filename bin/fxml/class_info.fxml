@@ -11,10 +11,10 @@
    </columnConstraints>
    
    <rowConstraints>
-      <RowConstraints valignment="TOP" vgrow="ALWAYS" />
-      <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints valignment="BOTTOM" />
+      <RowConstraints valignment="TOP" prefHeight="250.0" />
+      <RowConstraints valignment="CENTER" prefHeight="380.0" />
+      <RowConstraints valignment="CENTER" prefHeight="300.0" />
+      <RowConstraints valignment="TOP" prefHeight="230.0"/>
    </rowConstraints>
 
    <children>
@@ -24,9 +24,9 @@
          </font>
       </Text>
 
-      <VBox alignment="CENTER" spacing="10.0" GridPane.rowIndex="1">
+      <VBox alignment="TOP_LEFT" spacing="20.0" GridPane.rowIndex="1">
          <children>
-            <Text fill="#00000066" text="let's get some basic info about the you and the class">
+            <Text fill="#00000066" text="To personalize your grade calculations, please provide some basic&#10;information.">
                <font>
                   <Font name="Courier New" size="20.0" />
                </font>
@@ -36,10 +36,10 @@
                <children>
                   <Text text="Name:">
                      <font>
-                        <Font name="American Typewriter" size="25.0" />
+                        <Font name="American Typewriter" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="nameInput" prefWidth="200.0" />
+                  <TextField fx:id="nameInput"  prefWidth="300" styleClass="input-field"/>
                </children>
             </HBox>
 
@@ -47,10 +47,10 @@
                <children>
                   <Text text="Class Code:">
                      <font>
-                        <Font name="American Typewriter" size="25.0" />
+                        <Font name="American Typewriter" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="classCodeInput" prefWidth="200.0" />
+                  <TextField fx:id="classCodeInput" prefWidth="300" styleClass="input-field"/>
                </children>
             </HBox>
 
@@ -58,28 +58,29 @@
                <children>
                   <Text text="Class Name:">
                      <font>
-                        <Font name="American Typewriter" size="25.0" />
+                        <Font name="American Typewriter" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="classNameInput" prefWidth="200.0" />
+                  <TextField fx:id="classNameInput" prefWidth="300" styleClass="input-field"/>
                </children>
             </HBox>
          </children>
       </VBox>
 
-      <VBox alignment="CENTER" spacing="10.0" GridPane.rowIndex="2">
+      <VBox alignment="TOP_LEFT" spacing="10.0" GridPane.rowIndex="2">
          <children>
-            <Text fill="#00000066" text="To calcualte you grade correct I need to know how your class is graded">
+            <Text fill="#00000066" text="Please indicate how your final grade will be calculated:">
                <font>
                   <Font name="Courier New" size="20.0" />
                </font>
             </Text>
-            <RadioButton fx:id="cumlativePoints" mnemonicParsing="false" text="Cumlative Points" />
-            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Points" />
+            
+            <RadioButton fx:id="cumulativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
+            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button"/>
          </children>
       </VBox>
 
-      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="style.css">
+      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="3">
          <font>
             <Font name="American Typewriter" size="16.0" />
          </font>

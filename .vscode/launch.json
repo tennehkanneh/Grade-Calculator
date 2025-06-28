@@ -9,23 +9,15 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "GradeCalculator_a5a086d6",
-            "vmArgs": "--module-path \"/Users/tennehkanneh/Documents/GradeCalculator/lib/javafx-sdk-24.0.1/lib\" --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
+            "projectName": "Grade-Calculator_41e569db",
+            "vmArgs": "--module-path \"/Users/tennehkanneh/Documents/Grade-Calculator/lib/javafx-sdk-24.0.1/lib\" --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "vmArgs": "--module-path \"/Users/tennehkanneh/Documents/GradeCalculator/lib/javafx-sdk-24.0.1/lib\" --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "hellofx.Main",
-            "projectName": "GradeCalculator_a5a086d6",
-            "vmArgs": "--module-path \"/Users/tennehkanneh/Documents/GradeCalculator/lib/javafx-sdk-24.0.1/lib\" --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
+            "vmArgs": "--module-path \"/Users/tennehkanneh/Documents/Grade-Calculator/lib/javafx-sdk-24.0.1/lib\" --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
         }
     ]
 }
