@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:controller="ClassInfoController"  gridLinesVisible="true" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" />
+   </columnConstraints>
+   
+   <rowConstraints>
+      <RowConstraints valignment="TOP" prefHeight="250.0" />
+      <RowConstraints valignment="CENTER" prefHeight="380.0" />
+      <RowConstraints valignment="CENTER" prefHeight="300.0" />
+      <RowConstraints valignment="TOP" prefHeight="230.0"/>
+   </rowConstraints>
+
+   <children>
+      <Text text="Grade Calculator" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+         <font>
+            <Font name="American Typewriter Bold" size="60.0" />
+         </font>
+      </Text>
+
+      <VBox alignment="TOP_LEFT" spacing="20.0" GridPane.rowIndex="1">
+         <children>
+            <Text fill="#00000066" text="To personalize your grade calculations, please provide some basic&#10;information.">
+               <font>
+                  <Font name="Courier New" size="20.0" />
+               </font>
+            </Text>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Text text="Name:">
+                     <font>
+                        <Font name="American Typewriter" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="nameInput"  prefWidth="300" styleClass="input-field"/>
+               </children>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Text text="Class Code:">
+                     <font>
+                        <Font name="American Typewriter" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="classCodeInput" prefWidth="300" styleClass="input-field"/>
+               </children>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Text text="Class Name:">
+                     <font>
+                        <Font name="American Typewriter" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="classNameInput" prefWidth="300" styleClass="input-field"/>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <VBox alignment="TOP_LEFT" spacing="10.0" GridPane.rowIndex="2">
+         <children>
+            <Text fill="#00000066" text="Please indicate how your final grade will be calculated:">
+               <font>
+                  <Font name="Courier New" size="20.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="cumlativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
+            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Grades" styleClass="radio-button"/>
+         </children>
+      </VBox>
+
+      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font name="American Typewriter" size="16.0" />
+         </font>
+      </Button>
+   </children>
+
+   <padding>
+      <Insets top="5.0" right="10.0" bottom="5.0" left="10.0" />
+   </padding>
+</GridPane>
