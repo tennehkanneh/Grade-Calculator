@@ -5,40 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:controller="StartController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="StartController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
 
    <rowConstraints>
-      <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints prefHeight="110.0" valignment="BOTTOM" />
-   </rowConstraints>
+      <RowConstraints percentHeight="70.0" valignment="CENTER" vgrow="ALWAYS" /> <RowConstraints percentHeight="30.0" valignment="BOTTOM" vgrow="NEVER" /> </rowConstraints>
 
    <children>
       <VBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <children>
-            <Text text="Grade Calculator">
-               <font>
-                  <Font name="American Typewriter Bold" size="60.0" />
-               </font>
-            </Text>
-            <Text fill="#00000066" text="Created by Tenneh Kanneh">
-               <font>
-                  <Font name="Courier New" size="25.0" />
-               </font>
-            </Text>
+            <Text text="Grade Calculator" styleClass="title-text"/>
+            <Text text="Created by Tenneh Kanneh" styleClass="subtitle-text"/>
          </children>
       </VBox>
-      
-      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font name="American Typewriter" size="16.0" />
-         </font>
-      </Button>
+
+      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" styleClass="cta-button"/>
    </children>
 
    <padding>
-      <Insets top="5.0" right="10.0" bottom="5.0" left="10.0" />
+      <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
    </padding>
 </GridPane>
