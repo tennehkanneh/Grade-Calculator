@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:controller="ClassInfoController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="ClassInfoController"  gridLinesVisible="true" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -74,9 +74,8 @@
                   <Font name="Courier New" size="20.0" />
                </font>
             </Text>
-            
-            <RadioButton fx:id="cumulativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
-            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button"/>
+            <RadioButton fx:id="cumlativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
+            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Grades" styleClass="radio-button"/>
          </children>
       </VBox>
 

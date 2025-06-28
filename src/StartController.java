@@ -15,7 +15,7 @@ public class StartController {
         } catch (Exception e) {
             e.printStackTrace();
             
-            System.err.println("Failed to switch to Class Info Pane.");
+            System.err.println("Failed to switch to Class Info Scene.");
         }
     }
 
