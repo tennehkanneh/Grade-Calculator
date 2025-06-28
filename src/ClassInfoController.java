@@ -1,8 +1,11 @@
+import javax.swing.Action;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 public class ClassInfoController {
 
@@ -24,9 +27,13 @@ public class ClassInfoController {
     @FXML
     private Button startButton;
 
-  
     @FXML
     public void initialize() {
+        
+    }
+
+    @FXML
+    public void processRadioButtonClic(Action Event) {
         
     }
 
