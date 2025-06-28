@@ -73,7 +73,7 @@
          </padding>
       </VBox>
 
-      <Button fx:id="startButton" onAction="#startButtonPress" text="Proceed to Grading Setup" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="cta-button"/>
+      <Button fx:id="startButton" onAction="#startButtonPress" text="Proceed to Grading Setup" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="button"/>
    </children>
 
    <padding>

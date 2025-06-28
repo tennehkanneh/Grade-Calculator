@@ -94,8 +94,8 @@ public class ClassInfoController {
     
             alert.setContentText("You must select either 'Cumulative Points' or 'Weighted Categories' to proceed with calculating your grade.\n\n"
                                     + "If you're not sure which one to choose, read their associated descriptions and pick whichever one fits best with your class syllabus.\n"
-                                    + "\t- Cumulative Points: Total points earned divided by total points possible across all assignments.\n"
-                                    + "\t- Weighted Categories: Calculated by assigning different percentages of your final grade to various assignment categories (e.g., exams, homework).");
+                                    + "\nCumulative Points - Total points earned divided by total points possible across all assignments.\n"
+                                    + "\n Weighted Categories - Calculated by assigning different percentages of your final grade to various assignment categories (e.g., exams, homework).");
             alert.showAndWait();
         }
     }

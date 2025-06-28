@@ -11,7 +11,9 @@
    </columnConstraints>
 
    <rowConstraints>
-      <RowConstraints percentHeight="70.0" valignment="CENTER" vgrow="ALWAYS" /> <RowConstraints percentHeight="30.0" valignment="BOTTOM" vgrow="NEVER" /> </rowConstraints>
+      <RowConstraints percentHeight="70.0" valignment="CENTER" vgrow="ALWAYS" /> 
+      <RowConstraints percentHeight="30.0" valignment="BOTTOM" vgrow="NEVER" /> 
+   </rowConstraints>
 
    <children>
       <VBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -21,7 +23,7 @@
          </children>
       </VBox>
 
-      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" styleClass="cta-button"/>
+      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" styleClass="button"/>
    </children>
 
    <padding>

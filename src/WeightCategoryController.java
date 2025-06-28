@@ -1,11 +1,15 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 
 
 public class WeightCategoryController {
     @FXML
     private Button backButton;
+
+    @FXML
+    private ComboBox<GradeWeight> weightCategoryComboBox;
 
     @FXML
     public void initialize() {
@@ -21,5 +25,9 @@ public class WeightCategoryController {
             
             System.err.println("Failed to switch to Class Info Scene.");
         }
+    }
+
+    private static void gradeWeightCategories() {
+        
     }
 }

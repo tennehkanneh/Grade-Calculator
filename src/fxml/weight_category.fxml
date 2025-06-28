@@ -18,17 +18,21 @@
    </rowConstraints>
 
    <children>
-      <Button fx:id="backButton" onAction="#backButtonPress" text="BACK" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-         <font>
-            <Font name="American Typewriter" size="16.0" />
-         </font>
-      </Button>
+      <Button fx:id="backButton" onAction="#backButtonPress" text="BACK" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.rowIndex="0" styleClass="button"/>
 
-      <Text text="Grade Calculator" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-         <font>
-            <Font name="American Typewriter Bold" size="60.0" />
-         </font>
-      </Text>
+      <VBox alignment="CENTER" GridPane.rowIndex="0">
+         <children>
+            <Text text="Grade Calculator" styleClass="title-text"/>
+         </children>
+      </VBox>
+         
+        
+
+      <VBox alignment="CENTER" GridPane.rowIndex="1">
+         <AnchorPane xmlns:fx="http://javafx.com/fxml">
+            <ComboBox fx:id="weightCategoryComboBox" prefWidth="200.0" layoutX="0.0" layoutY="0.0"/>
+         </AnchorPane>
+      </VBox>
 
       <VBox alignment="TOP_LEFT" spacing="20.0" GridPane.rowIndex="1">
          <Text fill="#00000066" text="$nameInput what are you Grade Categories:">
