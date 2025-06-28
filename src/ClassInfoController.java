@@ -36,7 +36,7 @@ public class ClassInfoController {
 
     @FXML
     private void startButtonPress(ActionEvent event) {
-         System.out.println("Class Info Start Button Pressed!");
+        System.out.println("Class Info Start Button Pressed!");
         System.out.println("Name: " + nameInput.getText());
         System.out.println("Class Code: " + classCodeInput.getText());
         System.out.println("Class Name: " + classNameInput.getText());
