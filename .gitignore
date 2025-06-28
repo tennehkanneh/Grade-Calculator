@@ -2,3 +2,4 @@
 *.json
 
 bin/
+.vscode/launch.json
