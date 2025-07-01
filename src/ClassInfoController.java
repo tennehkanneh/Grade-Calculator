@@ -10,27 +10,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.skin.TextAreaSkin;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class ClassInfoController {
-    private static String name, classCode, className;
+    private static String studentName, studentClassCode;
 
     @FXML
-    private TextField nameInput;
-    private TextField classCodeInput;
-    private TextField classNameInput;
+    private TextField enterStudentName;
+    private TextField enterClassCode;
+   
 
     @FXML
-    private ToggleGroup gradingMethodToggleGroup;
+    private ToggleGroup gradingMethod;
 
     @FXML
-    private RadioButton cumulativePoints;
-    private HBox cumulativePointsForm;
+    private RadioButton cumulativePointsButton;
+    private VBox cumulativePointsForm;
 
     @FXML
-    private RadioButton weightedGrade;
-    private HBox gradeWeightForm;
+    private RadioButton weightedGradeButton;
+    private HBox weightedGradeForm;
   
     
 
@@ -41,13 +42,24 @@ public class ClassInfoController {
 
     @FXML
     private void createCumlativePointsForm() {
+        Text weightedGradeCTA = new Text("Do you know the total possible points for your class: ");
+        weightedGradeCTA.setStyle("subtitle-text");
 
+        Label cumlativePoints;
+        cumlativePoints = new Label("Cumlative Points");
+        cumlativePoints.setStyle("input-label");
+
+        TextField enterCumlativePoints = new TextField();
+        enterCumlativePoints.setStyle("input-field");
+
+        cumulativePointsForm = new VBox();
+        cumulativePointsForm.getChildren().addAll(cumlativePoints, enterCumlativePoints);
     }
 
     @FXML
     private void createGradingWeightForm() {
-        Text weightCategoryCTA = new Text("What are the categoires and weight does your class have: ");
-        weightCategoryCTA.setStyle("subtitle-text");
+        Text weightedGradeCTA = new Text("What are the categoires and weight does your class have: ");
+        weightedGradeCTA.setStyle("subtitle-text");
 
 
         Label weightCategory, categoryPercentage;
@@ -62,21 +74,21 @@ public class ClassInfoController {
         weightCategoryBox = new ComboBox<GradeWeight>();
     
 
-        TextField weightPercentage;
-        weightPercentage = new TextField();
-        weightPercentage.setStyle("input-field");
+        TextField enterCategoryPercentage;
+        enterCategoryPercentage = new TextField();
+        enterCategoryPercentage.setStyle("input-field");
 
         
-        VBox categoryName, percentageNumber;
+        VBox category, percentage;
 
-        categoryName = new VBox();
-        categoryName.getChildren().addAll(weightCategory, weightCategoryBox);
+        category = new VBox();
+        category.getChildren().addAll(weightCategory, weightCategoryBox);
 
-        percentageNumber = new VBox();
-        percentageNumber.getChildren().addAll(categoryPercentage, weightPercentage);
+        percentage = new VBox();
+        percentage.getChildren().addAll(categoryPercentage, enterCategoryPercentage);
 
 
-        gradeWeightForm.getChildren().addAll(weightCategoryCTA, weightCategoryBox, weightPercentage);
+        weightedGradeForm.getChildren().addAll(weightedGradeCTA, category, percentage);
     }
 
     /**
@@ -89,18 +101,14 @@ public class ClassInfoController {
     private void startButtonPress(ActionEvent event) {
         System.out.println("\nClass Info Start Button Pressed!\n");
         
-        name = nameInput.getText().isEmpty() ? "Unnamed Student" : nameInput.getText();
-        System.out.println("Name: " + name);
+        studentName = enterStudentName.getText().isEmpty() ? "Unnamed Student" : enterStudentName.getText();
+        System.out.println("Name: " + studentName);
 
-        classCode = classCodeInput.getText().isEmpty(
+        studentClassCode = enterClassCode.getText().isEmpty() ? "No Code Provided" : enterClassCode.getText();
+        System.out.println("Class Code: " + studentClassCode);
 
-        ) ? "No Code Provided" : classCodeInput.getText();
-        System.out.println("Class Code: " + classCode);
 
-        className = classNameInput.getText().isEmpty() ? "Unnamed Class" : classNameInput.getText();
-        System.out.println("Class Name: " + className);
-
-        if (cumulativePoints.isSelected()) {
+        if (cumulativePointsButton.isSelected()) {
             try {
                 Main.setRoot("grade_input");
             } catch (Exception e) {
@@ -110,7 +118,7 @@ public class ClassInfoController {
 
             System.out.println("Grading Style: Cumulative Points\n");
 
-        } else if (weightedGrade.isSelected()) {
+        } else if (weightedGradeButton.isSelected()) {
             try {
                 Main.setRoot("weight_category");
             } catch (Exception e) {

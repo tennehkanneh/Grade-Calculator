@@ -68,8 +68,8 @@
             <VBox fx:id="totalPointsForm">
             </VBox>
             <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button"/>
-            <VBox fx:id="cumulativePointsForm">
-            </VBox>
+            <HBox fx:id="cumulativePointsForm">
+            </HBox>
          </children>
 
          <padding>
