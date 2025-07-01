@@ -8,41 +8,75 @@
  */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 
 public class ClassInfoController {
     private static String name, classCode, className;
 
     @FXML
     private TextField nameInput;
-
-    @FXML
     private TextField classCodeInput;
-
-    @FXML
     private TextField classNameInput;
 
-    @FXML
-    private RadioButton cumulativePoints;
-
-    @FXML
-    private RadioButton weightedGrade;
-
-    @FXML
-    private Button startButton;
-
-  
     @FXML
     private ToggleGroup gradingMethodToggleGroup;
 
     @FXML
+    private RadioButton cumulativePoints;
+    private HBox cumulativePointsForm;
+
+    @FXML
+    private RadioButton weightedGrade;
+    private HBox gradeWeightForm;
+  
+    
+
+    @FXML
     public void initialize() {
 
+    }
+
+    @FXML
+    private void createCumlativePointsForm() {
+
+    }
+
+    @FXML
+    private void createGradingWeightForm() {
+        Text weightCategoryCTA = new Text("What are the categoires and weight does your class have: ");
+        weightCategoryCTA.setStyle("subtitle-text");
+
+
+        Label weightCategory, categoryPercentage;
+
+        weightCategory = new Label("Category Name");
+        weightCategory.setStyle("input-label");
+
+        categoryPercentage = new Label("Weight Percentage");
+        categoryPercentage.setStyle("input-label");
+
+        ComboBox weightCategoryBox;
+        weightCategoryBox = new ComboBox<GradeWeight>();
+    
+
+        TextField weightPercentage;
+        weightPercentage = new TextField();
+        weightPercentage.setStyle("input-field");
+
+        
+        VBox categoryName, percentageNumber;
+
+        categoryName = new VBox();
+        categoryName.getChildren().addAll(weightCategory, weightCategoryBox);
+
+        percentageNumber = new VBox();
+        percentageNumber.getChildren().addAll(categoryPercentage, weightPercentage);
+
+
+        gradeWeightForm.getChildren().addAll(weightCategoryCTA, weightCategoryBox, weightPercentage);
     }
 
     /**

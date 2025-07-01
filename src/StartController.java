@@ -30,10 +30,4 @@ public class StartController {
             System.err.println("Failed to switch to Class Info Scene.");
         }
     }
-
-
-    @FXML
-    public void initialize() {
-
-    }
 }

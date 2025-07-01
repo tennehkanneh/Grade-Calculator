@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import java.lang.String?> 
 
-<GridPane fx:controller="ClassInfoController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="controller.ClassInfoController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -64,8 +64,12 @@
          <children>
             <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text"/>
 
-            <RadioButton fx:id="cumulativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button-choice" toggleGroup="$gradingMethodToggleGroup"/>
-            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button-choice" toggleGroup="$gradingMethodToggleGroup"/>
+            <RadioButton fx:id="cumulativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
+            <VBox fx:id="totalPointsForm">
+            </VBox>
+            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button"/>
+            <VBox fx:id="cumulativePointsForm">
+            </VBox>
          </children>
 
          <padding>

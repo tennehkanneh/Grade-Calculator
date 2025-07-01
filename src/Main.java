@@ -1,3 +1,5 @@
+
+
 /**
  * @tennehkanneh
  * 06/10/2025 14:33:33
@@ -33,7 +35,7 @@ public class Main extends Application {
      * @param fxml              String fxml file name
      * @throws IOException
      */
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
