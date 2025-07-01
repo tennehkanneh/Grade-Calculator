@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import java.lang.String?> 
 
-<GridPane fx:controller="controller.ClassInfoController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="ClassInfoController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -41,13 +41,10 @@
                </rowConstraints>
 
                <Label text="Name:" styleClass="input-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-               <TextField fx:id="nameInput" prefWidth="30.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
+               <TextField fx:id="enterStudentName" prefWidth="30.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
 
                <Label text="Class Code:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-               <TextField fx:id="classCodeInput" prefWidth="30.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
-
-               <Label text="Class Name:" styleClass="input-label" GridPane.rowIndex="2" GridPane.columnIndex="0" /> 
-               <TextField fx:id="classNameInput" prefWidth="30.0" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="input-field" />
+               <TextField fx:id="enterClassCode" prefWidth="30.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
             </GridPane>
          </children>
 
@@ -58,17 +55,17 @@
 
       <VBox alignment="TOP_LEFT" spacing="15.0" GridPane.rowIndex="2">
          <fx:define>
-            <ToggleGroup fx:id="gradingMethodToggleGroup" />
+            <ToggleGroup fx:id="gradingMethod" />
          </fx:define>
 
          <children>
             <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text"/>
 
             <RadioButton fx:id="cumulativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
-            <VBox fx:id="totalPointsForm">
+            <VBox fx:id="cumulativePointsForm">
             </VBox>
             <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button"/>
-            <HBox fx:id="cumulativePointsForm">
+            <HBox fx:id="weightedGradeForm">
             </HBox>
          </children>
 
@@ -77,7 +74,7 @@
          </padding>
       </VBox>
 
-      <Button fx:id="startButton" onAction="#startButtonPress" text="Proceed to Grading Setup" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="button"/>
+      <Button fx:id="continueButton" onAction="#continueButtonPress" text="Proceed to Grading Setup" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="button"/>
    </children>
 
    <padding>

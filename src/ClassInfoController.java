@@ -98,7 +98,7 @@ public class ClassInfoController {
      * @param event     Button Press
      */
     @FXML
-    private void startButtonPress(ActionEvent event) {
+    private void continueButtonPress(ActionEvent event) {
         System.out.println("\nClass Info Start Button Pressed!\n");
         
         studentName = enterStudentName.getText().isEmpty() ? "Unnamed Student" : enterStudentName.getText();
