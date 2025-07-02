@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.String?> 
+<?import java.lang.String?>
 
-<GridPane fx:controller="ClassInfoController" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="ClassInfoController" gridLinesVisible="true" alignment="CENTER" prefHeight="650.0" prefWidth="900.0" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -21,7 +21,7 @@
    <children>
       <VBox alignment="CENTER" GridPane.rowIndex="0">
          <children>
-            <Text text="Grade Calculator" styleClass="title-text"/>
+            <Text text="Grade Calculator" styleClass="title-text" />
          </children>
       </VBox>
 
@@ -31,7 +31,7 @@
 
             <GridPane hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
                <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" halignment="LEFT" prefWidth="120.0"/>
+                  <ColumnConstraints hgrow="NEVER" halignment="LEFT" prefWidth="120.0" />
                   <ColumnConstraints hgrow="ALWAYS" />
                </columnConstraints>
                <rowConstraints>
@@ -41,10 +41,10 @@
                </rowConstraints>
 
                <Label text="Name:" styleClass="input-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-               <TextField fx:id="enterStudentName" prefWidth="30.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
+               <TextField fx:id="enterStudentName" prefWidth="250.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
 
                <Label text="Class Code:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-               <TextField fx:id="enterClassCode" prefWidth="30.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+               <TextField fx:id="enterClassCode" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
             </GridPane>
          </children>
 
@@ -59,14 +59,26 @@
          </fx:define>
 
          <children>
-            <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text"/>
+            <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text" />
 
-            <RadioButton fx:id="cumulativePoints" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button"/>
-            <VBox fx:id="cumulativePointsForm">
+            <RadioButton fx:id="cumulativePoints" onAction="#createCumulativePointsForm" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button-choice" toggleGroup="$gradingMethod" />
+            <VBox fx:id="cumulativePointsForm" visible="false" managed="false">
+               <Text text="Do you know the total possible points for your class?" styleClass="subtitle-text" />
+
+               <Label text="Total Possible Points:" styleClass="input-label" />
+               <TextField fx:id="enterCumulativePoints" promptText="e.g., 1000" prefWidth="250.0" styleClass="input-field" />
             </VBox>
-            <RadioButton fx:id="weightedGrade" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button"/>
-            <HBox fx:id="weightedGradeForm">
-            </HBox>
+
+
+            <RadioButton fx:id="weightedGrade" onAction="#createGradingWeightForm" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button-choice" toggleGroup="$gradingMethod" />
+            <VBox fx:id="weightedGradeForm" visible="false" managed="false">
+               <Text text="What are the categories and weights your class has:?" styleClass="subtitle-text" />
+
+               <Label text="Category Name:" styleClass="input-label" />
+               
+               <Label text="Weight Percentage:" styleClass="input-label" />
+               <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" styleClass="input-field" />
+            </VBox>
          </children>
 
          <padding>

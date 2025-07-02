@@ -1,143 +1,124 @@
-/**
- * @tennehkanneh
- * 06/21/2025 17:02:54
- * 
- * Description: In order to customize certain content in the Grade Calculator this Controller works with the 
- * class_info.fxml to get certian info about the student, the class, and how the class is grades so that
- * the Calculator can work properly.
- */
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.skin.TextAreaSkin;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
+import java.io.IOException; // Required for FXMLLoader
+
 public class ClassInfoController {
-    private static String studentName, studentClassCode;
+    private String studentName;
+    private String studentClassCode;
 
     @FXML
     private TextField enterStudentName;
+
+    @FXML
     private TextField enterClassCode;
-   
 
     @FXML
     private ToggleGroup gradingMethod;
 
     @FXML
-    private RadioButton cumulativePointsButton;
+    private RadioButton cumulativePoints;
+
+    @FXML
     private VBox cumulativePointsForm;
 
     @FXML
-    private RadioButton weightedGradeButton;
-    private HBox weightedGradeForm;
-  
-    
+    private RadioButton weightedGrade;
 
     @FXML
-    public void initialize() {
+    private VBox weightedGradeForm;
 
+    @FXML
+    private Button continueButton;
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public String getStudentClassCode() {
+        return studentClassCode;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public void setStudentClassCode(String studentClassCode) {
+        this.studentClassCode = studentClassCode;
     }
 
     @FXML
-    private void createCumlativePointsForm() {
-        Text weightedGradeCTA = new Text("Do you know the total possible points for your class: ");
-        weightedGradeCTA.setStyle("subtitle-text");
+    private void createCumulativePointsForm() {
+        weightedGradeForm.setVisible(false);
+        weightedGradeForm.setManaged(false);
 
-        Label cumlativePoints;
-        cumlativePoints = new Label("Cumlative Points");
-        cumlativePoints.setStyle("input-label");
-
-        TextField enterCumlativePoints = new TextField();
-        enterCumlativePoints.setStyle("input-field");
-
-        cumulativePointsForm = new VBox();
-        cumulativePointsForm.getChildren().addAll(cumlativePoints, enterCumlativePoints);
+        cumulativePointsForm.setVisible(true);
+        cumulativePointsForm.setManaged(true);
     }
 
     @FXML
     private void createGradingWeightForm() {
-        Text weightedGradeCTA = new Text("What are the categoires and weight does your class have: ");
-        weightedGradeCTA.setStyle("subtitle-text");
+        cumulativePointsForm.setVisible(false);
+        cumulativePointsForm.setManaged(false);
 
-
-        Label weightCategory, categoryPercentage;
-
-        weightCategory = new Label("Category Name");
-        weightCategory.setStyle("input-label");
-
-        categoryPercentage = new Label("Weight Percentage");
-        categoryPercentage.setStyle("input-label");
-
-        ComboBox weightCategoryBox;
-        weightCategoryBox = new ComboBox<GradeWeight>();
-    
-
-        TextField enterCategoryPercentage;
-        enterCategoryPercentage = new TextField();
-        enterCategoryPercentage.setStyle("input-field");
-
-        
-        VBox category, percentage;
-
-        category = new VBox();
-        category.getChildren().addAll(weightCategory, weightCategoryBox);
-
-        percentage = new VBox();
-        percentage.getChildren().addAll(categoryPercentage, enterCategoryPercentage);
-
-
-        weightedGradeForm.getChildren().addAll(weightedGradeCTA, category, percentage);
+        weightedGradeForm.setVisible(true);
+        weightedGradeForm.setManaged(true);
     }
 
-    /**
-     * When the start Button is Pressed this method gets the inputs and the grading system is saved in order to 
-     * customize the experince. If the grading system is not chose the user can not continue.
-     * 
-     * @param event     Button Press
-     */
     @FXML
     private void continueButtonPress(ActionEvent event) {
         System.out.println("\nClass Info Start Button Pressed!\n");
-        
+
         studentName = enterStudentName.getText().isEmpty() ? "Unnamed Student" : enterStudentName.getText();
         System.out.println("Name: " + studentName);
 
         studentClassCode = enterClassCode.getText().isEmpty() ? "No Code Provided" : enterClassCode.getText();
         System.out.println("Class Code: " + studentClassCode);
 
+        // Determine selected grading style
+        String selectedGradingStyle = null;
+        if (cumulativePoints.isSelected()) {
+            selectedGradingStyle = "Cumulative Points";
+        } else if (weightedGrade.isSelected()) {
+            selectedGradingStyle = "Weighted Categories";
+        }
 
-        if (cumulativePointsButton.isSelected()) {
+        System.out.println(
+                "Grading Style: " + (selectedGradingStyle != null ? selectedGradingStyle : "None Selected") + "\n");
+
+        if (selectedGradingStyle != null) {
             try {
-                Main.setRoot("grade_input");
-            } catch (Exception e) {
+                // If you need to pass data to the next controller (e.g., student name, class
+                // code, grading style),
+                // you must load the FXML manually, get its controller, set the data, then set
+                // the scene root.
+                // Example for 'weight_category' scene:
+              
+                // If WeightCategoryController has a setUserData method:
+                // WeightCategoryController nextController = loader.getController();
+                // nextController.setUserData(studentName, studentClassCode,
+                // selectedGradingStyle);
+                Main.setRoot("/fxml/weight_category.fxml");
+
+            } catch (IOException e) { // Catch IOException specifically for FXML loading issues
                 e.printStackTrace();
-                System.err.println("Failed to switch to Grade Input Scene.");
+                System.err.println(
+                        "Failed to switch to scene for " + selectedGradingStyle + " grading: " + e.getMessage());
             }
-
-            System.out.println("Grading Style: Cumulative Points\n");
-
-        } else if (weightedGradeButton.isSelected()) {
-            try {
-                Main.setRoot("weight_category");
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.err.println("Failed to switch to Weight Category Scene.");
-            }
-
-            System.out.println("Grading Style: Weighted Categories\n"); 
 
         } else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Selection Required");
             alert.setHeaderText("Please Choose a Grading Method");
-
-    
-            alert.setContentText("You must select either 'Cumulative Points' or 'Weighted Categories' to proceed with calculating your grade.\n\n"
-                                    + "If you're not sure which one to choose, read their associated descriptions and pick whichever one fits best with your class syllabus.\n"
-                                    + "\nCumulative Points - Total points earned divided by total points possible across all assignments.\n"
-                                    + "\n Weighted Categories - Calculated by assigning different percentages of your final grade to various assignment categories (e.g., exams, homework).");
+            alert.setContentText(
+                    "You must select either 'Cumulative Points' or 'Weighted Categories' to proceed with calculating your grade.\n\n"
+                            + "If you're not sure which one to choose, read their associated descriptions and pick whichever one fits best with your class syllabus.\n"
+                            + "\nCumulative Points - Total points earned divided by total points possible across all assignments.\n"
+                            + "\n Weighted Categories - Calculated by assigning different percentages of your final grade to various assignment categories (e.g., exams, homework).");
             alert.showAndWait();
         }
     }
