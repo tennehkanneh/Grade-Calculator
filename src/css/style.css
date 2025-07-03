@@ -19,6 +19,27 @@
     -fx-text-fill: white; 
 }
 
+.weight-button {
+    -fx-background-color: transparent; 
+    -fx-background-insets: 0;
+    -fx-background-radius: 0; 
+    -fx-border-color: transparent; 
+    -fx-border-width: 0;
+    -fx-padding: 0px; 
+
+    -fx-text-fill: #555555; 
+    -fx-font-family: "American Typewriter";
+    -fx-font-size: 18px;
+    -fx-cursor: hand; 
+}
+
+.weight-button:hover {
+    -fx-text-fill: #cccc;
+    -fx-underline: true;
+    -fx-background-color: transparent; 
+}
+
+
 .title-text {
     -fx-font-family: "American Typewriter";
     -fx-font-size: 60px;
@@ -82,4 +103,68 @@
 
 .radio-button:hover .radio {
     -fx-border-color: #555555;
+}
+
+.combo-box {
+    -fx-font-family: "American Typewriter";
+    -fx-font-size: 18px; 
+    -fx-text-fill: #333333; 
+    -fx-background-color: white;
+    -fx-border-color: #cccccc; 
+    -fx-border-width: 1px; 
+    -fx-padding: 7px 9px; 
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.combo-box:focused {
+    -fx-border-color: #555; 
+    -fx-border-width: 2px; 
+}
+
+.combo-box .label {
+    -fx-text-fill: #333333;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: white; 
+    -fx-background-radius: 0 5px 5px 0; 
+    -fx-border-color: transparent transparent transparent #cccccc; 
+    -fx-border-width: 1px;
+    -fx-padding: 0 10px; 
+}
+
+.combo-box .arrow-button:hover {
+    -fx-background-color: #f0f0f0; 
+}
+
+.combo-box .arrow {
+    -fx-background-color: #333333; 
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white; 
+    -fx-border-color: #555555;
+    -fx-border-width: 1px;
+    -fx-background-radius: 5px;
+}
+
+.combo-box-popup .list-cell {
+    -fx-font-family: "American Typewriter";
+    -fx-font-size: 18px; 
+    -fx-text-fill: #333333; 
+    -fx-padding: 7px 9px; 
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-cell:filled:hover {
+    -fx-background-color: #f0f0f0; 
+    -fx-text-fill: #333333;
+    -fx-cursor: hand;
+}
+
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
 }

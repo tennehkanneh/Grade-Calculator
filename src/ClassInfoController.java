@@ -24,13 +24,13 @@ public class ClassInfoController {
     private RadioButton cumulativePoints;
 
     @FXML
-    private VBox cumulativePointsForm;
+    private GridPane cumulativePointsForm;
 
     @FXML
     private RadioButton weightedGrade;
 
     @FXML
-    private VBox weightedGradeForm;
+    private GridPane weightedGradeForm;
 
     @FXML
     private Button continueButton;
