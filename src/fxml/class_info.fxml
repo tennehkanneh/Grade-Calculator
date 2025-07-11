@@ -7,130 +7,131 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 
-<GridPane fx:controller="ClassInfoController" alignment="CENTER" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" />
-   </columnConstraints>
 
-   <rowConstraints>
-      <RowConstraints percentHeight="15.0" valignment="CENTER" vgrow="NEVER" />
-      <RowConstraints percentHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints percentHeight="45.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints percentHeight="10.0" valignment="CENTER" vgrow="NEVER" />
-   </rowConstraints>
-
-   <children>
-      <VBox alignment="CENTER" GridPane.rowIndex="0">
-         <children>
-            <Text text="Grade Calculator" styleClass="title-text" />
-         </children>
-      </VBox>
-
-      <VBox alignment="TOP_LEFT" spacing="20.0" GridPane.rowIndex="1">
-         <children>
-            <Text text="To personalize your grade calculations, please provide some basic&#10;information." styleClass="subtitle-text"/>
-
-            <GridPane hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" halignment="LEFT" prefWidth="120.0" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
-
-            
-               <Label text="Name:" styleClass="input-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-               <TextField fx:id="enterStudentName" prefWidth="250.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
-            
-
-               <Label text="Class Code:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-               <TextField fx:id="enterClassCode" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
-            </GridPane>
-         </children>
-
-         <padding>
-            <Insets top="20.0" bottom="20.0" />
-         </padding>
-      </VBox>
-
-      <VBox alignment="TOP_LEFT" spacing="15.0" GridPane.rowIndex="2">
-         <fx:define>
-            <ToggleGroup fx:id="gradingMethod" />
-         </fx:define>
+<ScrollPane fx:controller="ClassInfoController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <GridPane gridLinesVisible="true" alignment="CENTER" styleClass="root-grid">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints percentHeight="15.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints percentHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints percentHeight="45.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints percentHeight="10.0" valignment="CENTER" vgrow="NEVER" />
+         </rowConstraints>
 
          <children>
-            <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text" />
+            <VBox alignment="CENTER" GridPane.rowIndex="0">
+               <children>
+                  <Text text="Grade Calculator" styleClass="title-text" />
+               </children>
+            </VBox>
 
-            <RadioButton fx:id="cumulativePoints" onAction="#createCumulativePointsForm" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button-choice" toggleGroup="$gradingMethod" />
+            <VBox alignment="TOP_LEFT" spacing="20.0" GridPane.rowIndex="1">
+               <children>
+                  <Text text="To personalize your grade calculations, please provide some basic&#10;information." styleClass="subtitle-text"/>
+
+                  <GridPane gridLinesVisible="true" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" halignment="LEFT" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+
+                     <Label text="Name:" styleClass="input-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                     <TextField fx:id="enterStudentName" prefWidth="250.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
+         
+                     <Label text="Class Code:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                     <TextField fx:id="enterClassCode" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+                  </GridPane>
+               </children>
+
+               <padding>
+                  <Insets top="20.0" bottom="20.0" />
+               </padding>
+            </VBox>
+
+            <VBox alignment="TOP_LEFT" spacing="15.0" GridPane.rowIndex="2">
+               <fx:define>
+                  <ToggleGroup fx:id="gradingMethod" />
+               </fx:define>
+
+               <children>
+                  <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text" />
+
+                  <RadioButton fx:id="cumulativePoints" onAction="#createCumulativePointsForm" mnemonicParsing="false" text="Cumulative Points" styleClass="radio-button-choice" toggleGroup="$gradingMethod" />
           
-            <GridPane fx:id="cumulativePointsForm" visible="false" managed="false" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" halignment="LEFT" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints />
-               </rowConstraints>
+                  <GridPane fx:id="cumulativePointsForm" visible="false" managed="false" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" halignment="LEFT" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
 
             
-               <Label text="Total Possible Points:" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-               <TextField fx:id="enterCumulativePoints" promptText="e.g., 1000" prefWidth="250.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
+                     <Label text="Total Possible Points:" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                     <TextField fx:id="enterCumulativePoints" promptText="e.g., 1000" prefWidth="250.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
                
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </GridPane>
+               
+                  <RadioButton fx:id="weightedGrade" onAction="#createGradingWeightForm" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button-choice" toggleGroup="$gradingMethod" />
+                  <GridPane gridLinesVisible="true" fx:id="weightedGradeForm" visible="false" managed="false" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
+                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+
+                     <Label text="Category" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                     <ComboBox fx:id="myComboBox" styleClass="combo-box" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                        <items>
+                           <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                           </FXCollections>
+                        </items>
+                     </ComboBox>
+               
+                     <Label text="Weight Percentage" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                     <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                     <Text text="%%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+                     <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button"/>
+
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+
                <padding>
-                  <Insets left="35.0" />
+                  <Insets top="20.0" bottom="20.0" />
                </padding>
-            </GridPane>
-               
-            <RadioButton fx:id="weightedGrade" onAction="#createGradingWeightForm" mnemonicParsing="false" text="Weighted Categories" styleClass="radio-button-choice" toggleGroup="$gradingMethod" />
-            <GridPane fx:id="weightedGradeForm" visible="false" managed="false" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
+            </VBox>
 
-               <Label text="Category" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-               <ComboBox fx:id="myComboBox" styleClass="combo-box" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0">
-                  <items>
-                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Item 1" />
-                        <String fx:value="Item 2" />
-                        <String fx:value="Item 3" />
-                     </FXCollections>
-                  </items>
-               </ComboBox>
-
-               
-               <Label text="Weight Percentage" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-               <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-
-
-               <Text text="%%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-               <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#continueButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button"/>
-
-               <padding>
-                  <Insets left="35.0" />
-               </padding>
-            </GridPane>
+            <Button fx:id="continueButton" onAction="#continueButtonPress" text="Proceed to Grading Setup" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="button"/>
          </children>
 
          <padding>
-            <Insets top="20.0" bottom="20.0" />
+            <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
          </padding>
-      </VBox>
-
-      <Button fx:id="continueButton" onAction="#continueButtonPress" text="Proceed to Grading Setup" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="button"/>
-   </children>
-
-   <padding>
-      <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
-   </padding>
-</GridPane>
+   
+      </GridPane>
+   </content>
+</ScrollPane>

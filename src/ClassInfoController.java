@@ -1,4 +1,5 @@
 import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -35,6 +36,14 @@ public class ClassInfoController {
     @FXML
     private Button continueButton;
 
+    // FXML elements for the *first* row in weightedGradeForm, already in FXML
+    @FXML
+    private ComboBox<String> myComboBox; // The initial ComboBox
+    @FXML
+    private TextField enterWeightPercentage; // The initial TextField
+    @FXML
+    private Button addWeightCategoryButton; // The button that triggers adding new rows
+
     public String getStudentName() {
         return studentName;
     }
@@ -68,6 +77,50 @@ public class ClassInfoController {
         weightedGradeForm.setVisible(true);
         weightedGradeForm.setManaged(true);
     }
+
+    @FXML
+    private void addWeightCategoryPress(ActionEvent event) {
+        // Get the current row index of the "Add Another Category" button.
+        // New rows will be inserted immediately before this button.
+        int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);
+
+        // If for some reason the row index isn't set (shouldn't happen with FXML),
+        // default to 2 as that's the row after the initial input row.
+        if (buttonCurrentRow == -1) {
+            buttonCurrentRow = 2;
+        }
+
+        // 1. Create a new ComboBox
+        ComboBox<String> newComboBox = new ComboBox<>();
+        // Populate with example items (you can replace with your actual categories)
+        newComboBox.setItems(FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "New Category"));
+        newComboBox.getStyleClass().add("combo-box"); // Apply your custom CSS style
+        newComboBox.setPrefWidth(250.0); // Match the preferred width from FXML
+
+        // 2. Create a new TextField for weight percentage
+        TextField newTextField = new TextField();
+        newTextField.setPromptText("e.g., 2, 5, 20, 33, 45, 100");
+        newTextField.getStyleClass().add("input-field"); // Apply your custom CSS style
+        newTextField.setPrefWidth(250.0); // Match the preferred width from FXML
+
+        // 3. Create the "%%" Text element for the new row
+        Text newPercentageText = new Text("%");
+        newPercentageText.getStyleClass().add("subtitle-text");
+
+        // 4. Add the new elements to the GridPane.
+        // `weightedGradeForm.addRow` inserts a new row at `buttonCurrentRow`
+        // and pushes all existing elements from that row downwards.
+        weightedGradeForm.addRow(buttonCurrentRow, newComboBox, newTextField, newPercentageText);
+        
+
+        // 5. Update the row index of the "Add Another Category" button
+        // to move it to the row immediately after the newly added row.
+        GridPane.setRowIndex(addWeightCategoryButton, buttonCurrentRow + 1);
+
+        // Optional: If you need to store references to these dynamically created elements,
+        // you could add them to a List<ComboBox<String>> and List<TextField>.
+    }
+
 
     @FXML
     private void continueButtonPress(ActionEvent event) {
