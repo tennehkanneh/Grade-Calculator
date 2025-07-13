@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 
 <GridPane fx:controller="WeightCategoryController"  gridLinesVisible="true" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
    <columnConstraints>
@@ -18,10 +20,11 @@
    
 
    <children>
-      <GridPane>
+      <GridPane gridLinesVisible="true" GridPane.rowIndex="0">
          <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" />
          </columnConstraints>
+
          <rowConstraints>
             <RowConstraints valignment="TOP" vgrow="NEVER"  />
             <RowConstraints valignment="CENTER" vgrow="NEVER"  />
@@ -37,41 +40,42 @@
          </children>
       </GridPane>
 
+      <!-- visible="false" managed="false"  -->
 
-       <!-- <GridPane gridLinesVisible="true" fx:id="weightedGradeForm" visible="false" managed="false" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
-                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                     </rowConstraints>
+      <GridPane gridLinesVisible="true" fx:id="weightedGradeForm" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
+            <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+            <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+         </columnConstraints>
 
-                     <Label text="Category" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                     <ComboBox fx:id="myComboBox" styleClass="combo-box" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0">
-                        <items>
-                           <FXCollections fx:factory="observableArrayList">
-                              <String fx:value="Item 1" />
-                              <String fx:value="Item 2" />
-                              <String fx:value="Item 3" />
-                           </FXCollections>
-                        </items>
-                     </ComboBox>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
+         <children>
+            
+            <Label text="Category" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
+            <ComboBox fx:id="myComboBox" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="combo-box">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Item 1" />
+                     <String fx:value="Item 2" />
+                     <String fx:value="Item 3" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
 
-                     <Label text="Weight Percentage" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-                     <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+            <Label text="Weight Percentage" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
+            <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+         
+            <Text text="%%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+         </children>
+      </GridPane>
 
-                     <Text text="%%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-                     <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button"/>
-
-                     <padding>
-                        <Insets left="35.0" />
-                     </padding>
-                  </GridPane> -->
 
       <Button fx:id="continueButton" onAction="#continueButtonPress" text="Ready to Input your Grades" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
    </children>

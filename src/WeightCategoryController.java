@@ -2,8 +2,11 @@ import javafx.fxml.FXML;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 
 public class WeightCategoryController {
+    private SetUpController studentInfo = new SetUpController();
+
     @FXML
     private Button continueButton;
 
@@ -16,6 +19,11 @@ public class WeightCategoryController {
     @FXML
     private Button addWeightCategoryButton;
 
+    @FXML
+    private GridPane weightedGradeForm;
+
+    
+
     @FXML    
     private void backButtonPress(ActionEvent event) {       
          try {
@@ -27,6 +35,7 @@ public class WeightCategoryController {
         }
     }
 
+    @FXML 
     private void addWeightCategoryPress(ActionEvent event) {       
         // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
         // if (buttonCurrentRow == -1) {
