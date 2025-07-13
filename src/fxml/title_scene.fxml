@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:controller="StartController" alignment="CENTER" styleClass="root-grid" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="TitleSceneController" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -23,7 +23,7 @@
          </children>
       </VBox>
 
-      <Button fx:id="startButton" onAction="#startButtonPress" text="Start Calculating Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" styleClass="button"/>
+      <Button fx:id="startButton" onAction="#startButtonPress" text="Ready to Get Started" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" styleClass="button"/>
    </children>
 
    <padding>

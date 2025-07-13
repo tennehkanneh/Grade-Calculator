@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+
+
+<GridPane fx:controller="SetUpController" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+   <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" />
+   </columnConstraints>
+
+   <rowConstraints>
+      <RowConstraints percentHeight="15.0" valignment="CENTER" vgrow="NEVER" />
+      <RowConstraints percentHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints percentHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints percentHeight="25.0" valignment="CENTER" vgrow="NEVER" />
+   </rowConstraints>
+
+   <children>
+      <VBox alignment="CENTER" GridPane.rowIndex="0">
+         <children>
+            <Text text="Grade Calculator" styleClass="title-text" />
+         </children>
+      </VBox>
+
+      <VBox alignment="TOP_LEFT" spacing="20.0" GridPane.rowIndex="1">
+         <children>
+            <Text text="To personalize your grade calculations, please provide some basic&#10;information." styleClass="subtitle-text"/>
+
+            <GridPane gridLinesVisible="true" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" halignment="LEFT" prefWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+
+               <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="input-label" />
+               <TextField fx:id="enterStudentName" prefWidth="250.0" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="input-field" />
+         
+               <Label text="Class Code:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-label" />
+               <TextField fx:id="enterClassCode" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+            </GridPane>
+         </children>
+
+         <padding>
+            <Insets top="20.0" bottom="20.0" />
+         </padding>
+      </VBox>
+
+      <VBox alignment="TOP_LEFT" spacing="15.0" GridPane.rowIndex="2">
+         <fx:define>
+            <ToggleGroup fx:id="gradingMethod" />
+         </fx:define>
+
+         <children>
+            <Text text="Please indicate how your final grade will be calculated:" styleClass="subtitle-text" />
+
+            <RadioButton fx:id="cumulativePoints" text="Cumulative Points"  toggleGroup="$gradingMethod" mnemonicParsing="false" styleClass="radio-button-choice" />
+            <RadioButton fx:id="weightedCategories"  text="Weighted Categories" toggleGroup="$gradingMethod" mnemonicParsing="false" styleClass="radio-button-choice" />  
+         </children>
+
+         <padding>
+            <Insets top="20.0" bottom="20.0" />
+         </padding>
+      </VBox>
+
+      <Button fx:id="continueButton" onAction="#continueButtonPress" text="Ready to Continue" GridPane.halignment="CENTER" GridPane.rowIndex="3" styleClass="button"/>
+   </children>
+
+   <padding>
+      <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
+   </padding>
+</GridPane>
+ 

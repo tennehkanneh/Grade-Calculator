@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("start"), 900, 700);
+        scene = new Scene(loadFXML("title_scene"), 900, 700);
         stage.setTitle("Grade Calculator");
         stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
