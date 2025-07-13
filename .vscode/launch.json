@@ -9,13 +9,6 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "Grade-Calculator_5f593cda"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "mainClass": "Main",
             "projectName": "Grade-Calculator_41e569db",
             "vmArgs": "--module-path \"/Users/tennehkanneh/Documents/Grade-Calculator/lib/javafx-sdk-24.0.1/lib\" --add-modules javafx.controls,javafx.fxml --enable-native-access=javafx.graphics"
         },

@@ -31,7 +31,7 @@
          <children>
             <Text text="To personalize your grade calculations, please provide some basic&#10;information." styleClass="subtitle-text"/>
 
-            <GridPane gridLinesVisible="true" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+            <GridPane hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" halignment="LEFT" prefWidth="120.0" />
                   <ColumnConstraints hgrow="ALWAYS" />

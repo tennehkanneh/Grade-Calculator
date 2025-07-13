@@ -11,20 +11,72 @@
    </columnConstraints>
    
    <rowConstraints>
-      <RowConstraints valignment="TOP" prefHeight="250.0" />
-      <RowConstraints valignment="CENTER" prefHeight="380.0" />
-      <RowConstraints valignment="TOP" prefHeight="230.0"/>
+      <RowConstraints percentHeight="20.0" valignment="TOP" vgrow="NEVER" />
+      <RowConstraints percentHeight="60.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints percentHeight="20.0" valignment="BOTTOM"  vgrow="NEVER" />
    </rowConstraints>
+   
 
    <children>
-      <VBox alignment="CENTER" GridPane.rowIndex="0">
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints valignment="TOP" vgrow="NEVER"  />
+            <RowConstraints valignment="CENTER" vgrow="NEVER"  />
+         </rowConstraints>
+
          <children>
-            <Text text="Grade Calculator" styleClass="title-text" />
+            <Button fx:id="backButton" onAction="#backButtonPress" text="Back" GridPane.rowIndex="0" styleClass="button" />
+            <VBox alignment="CENTER" GridPane.rowIndex="1">
+               <children>
+                  <Text text="Grade Calculator" styleClass="title-text" />
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </GridPane>
+
+
+       <!-- <GridPane gridLinesVisible="true" fx:id="weightedGradeForm" visible="false" managed="false" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
+                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+                        <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+
+                     <Label text="Category" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                     <ComboBox fx:id="myComboBox" styleClass="combo-box" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                        <items>
+                           <FXCollections fx:factory="observableArrayList">
+                              <String fx:value="Item 1" />
+                              <String fx:value="Item 2" />
+                              <String fx:value="Item 3" />
+                           </FXCollections>
+                        </items>
+                     </ComboBox>
+
+
+                     <Label text="Weight Percentage" styleClass="subtitle-text" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                     <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                     <Text text="%%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+                     <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button"/>
+
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </GridPane> -->
+
+      <Button fx:id="continueButton" onAction="#continueButtonPress" text="Ready to Input your Grades" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
    </children>
 
    <padding>
-      <Insets top="5.0" right="10.0" bottom="5.0" left="10.0" />
+      <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
    </padding>
 </GridPane>
