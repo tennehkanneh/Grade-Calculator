@@ -1,38 +1,25 @@
-import javafx.fxml.FXML;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.fxml.FXML;
 
-public class WeightCategoryController {
-    private SetUpController studentInfo = new SetUpController();
+public class WeightedController {
 
-    @FXML
-    private Button continueButton;
-
-    @FXML
-    private ComboBox<String> myComboBox;
-
-    @FXML
-    private TextField enterWeightPercentage;
-
-    @FXML
-    private Button addWeightCategoryButton;
-
-    @FXML
-    private GridPane weightedGradeForm;
+    public enum Categories { 
+        TEST, 
+        HOMEWORK, 
+        ASSIGNMENT, 
+        QUIZ, 
+        PROJECT, 
+        GROUP_PROJECT, 
+        OTHER1, 
+        OTHER2, 
+        OTHER3 
+    }
 
     
 
-    @FXML    
-    private void backButtonPress(ActionEvent event) {       
-         try {
-            Main.setRoot("setup_scene");
-        } catch (Exception e) {
 
-            e.printStackTrace();
-            System.err.println("Failed to switch to Class Info Scene.");
-        }
+    public double getWeight() {
+        return 0.00;
     }
 
     @FXML 
@@ -62,14 +49,13 @@ public class WeightCategoryController {
     }
 
     @FXML    
-    private void continueButtonPress(ActionEvent event) {       
+    private void backButtonPress(ActionEvent event) {       
          try {
-            Main.setRoot("gradeinput_scene");
+            Main.setRoot("menu_scene");
         } catch (Exception e) {
 
             e.printStackTrace();
             System.err.println("Failed to switch to Class Info Scene.");
         }
     }
-    
 }
