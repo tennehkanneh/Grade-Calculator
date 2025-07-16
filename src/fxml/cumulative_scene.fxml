@@ -69,7 +69,7 @@
                   <Label text="Possible Points" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="subtitle-text" />
                   <TextField fx:id="enterPossiblePoints" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="input-field" />
          
-                  <Button fx:id="addAnotherAssignment" text="&#43; Add Another Assignment" onAction="#addAnotherAssignmentPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+                  <Button fx:id="addAnotherAssignmentButton" text="&#43; Add Another Assignment" onAction="#addAnotherAssignmentButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
                </children>
 
                <padding>
