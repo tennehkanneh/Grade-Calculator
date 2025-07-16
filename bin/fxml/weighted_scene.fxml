@@ -7,7 +7,7 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
-<GridPane fx:controller="WeightCategoryController"  gridLinesVisible="true" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+<GridPane fx:controller="WeightedController"  gridLinesVisible="true" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -71,13 +71,13 @@
             <Label text="Weight Percentage" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
             <TextField fx:id="enterWeightPercentage" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
          
-            <Text text="%%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-            <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+            <Text text="\%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+            <!-- <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" /> -->
          </children>
       </GridPane>
 
 
-      <Button fx:id="continueButton" onAction="#continueButtonPress" text="Ready to Input your Grades" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
+      <!-- <Button fx:id="continueButton" onAction="#continueButtonPress" text="Ready to Input your Grades" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/> -->
    </children>
 
    <padding>
