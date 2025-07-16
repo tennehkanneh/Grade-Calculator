@@ -59,17 +59,17 @@
 
                <children>
                   <Label text="Assignment Name" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
-                  <TextField fx:id="enterAssignmentName" promptText="e.g. Test 1, Global Project" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
+                  <TextField fx:id="enterAssignmentName" id="enterAssignmentName-0" promptText="e.g. Test 1, Global Project" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
 
                   <Label text="Points Earned" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
-                  <TextField fx:id="enterPointsEarned" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+                  <TextField fx:id="enterPointsEarned" id="enterPointsEarned-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
 
                   <Text text="/" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
 
                   <Label text="Possible Points" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="subtitle-text" />
-                  <TextField fx:id="enterPossiblePoints" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="input-field" />
+                  <TextField fx:id="enterPossiblePoints" id="enterPossiblePoints-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="input-field" />
          
-                  <Button fx:id="addAnotherAssignment" text="&#43; Add Another Assignment" onAction="#addAnotherAssignmentPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+                  <Button fx:id="addAnotherAssignmentButton" text="&#43; Add Another Assignment" onAction="#addAnotherAssignmentButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
                </children>
 
                <padding>
