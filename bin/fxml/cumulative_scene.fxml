@@ -38,6 +38,27 @@
                   <VBox alignment="CENTER" GridPane.rowIndex="1">
                      <children>
                         <Text text="Grade Calculator" styleClass="title-text" />
+                        
+                        <GridPane hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="NEVER" halignment="RIGHT"/>
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
+
+                           <Label text="Total Possible Points:" styleClass="input-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                           <Text fx:id="totalPossiblePoints" text="--" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
+
+                           <Label text="Total Earned Points:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                           <Text fx:id="totalEarnedPoints" text="--" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="subtitle-text" />
+
+                           <Label text="Finale Grade:" styleClass="input-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                           <Text fx:id="finaleGrade" text="--" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="subtitle-text" />
+                        </GridPane>
                      </children>
                   </VBox>
                </children>

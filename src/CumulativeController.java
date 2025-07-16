@@ -19,6 +19,20 @@ public class CumulativeController {
     private Button addAnotherAssignmentButton;
 
     @FXML
+    private Text finaleGrade;
+
+    @FXML
+    private Text totalPossiblePoints;
+
+    @FXML
+    private Text totalEarnedPoints;
+
+    @FXML
+    public void initialize() {
+        addAnotherAssignmentRow = GridPane.getRowIndex(addAnotherAssignmentButton);
+    }
+
+    @FXML
     private void backButtonPress(ActionEvent event) {
         try {
             Main.setRoot("menu_scene");
@@ -31,8 +45,6 @@ public class CumulativeController {
 
     @FXML
     private void addAnotherAssignmentButtonPress(ActionEvent event) {
-        addAnotherAssignmentRow = GridPane.getRowIndex(addAnotherAssignmentButton);
-
         TextField newAssignmentNameTextField = new TextField();
         newAssignmentNameTextField.setPromptText("e.g. Test 1, Global Project");
         newAssignmentNameTextField.getStyleClass().add("input-field");
@@ -59,20 +71,31 @@ public class CumulativeController {
         cumlativePointsInput.add(newPossiblePointsTextField, 3, addAnotherAssignmentRow);
 
 
-        GridPane.setRowIndex(addAnotherAssignmentButton, addAnotherAssignmentRow + 1);
+        addAnotherAssignmentRow++;
+        GridPane.setRowIndex(addAnotherAssignmentButton, addAnotherAssignmentRow);
     }
 
     @FXML
     private void calculateButtonPress(ActionEvent event) {
         loadGradesIntoArray();
+        calculateAndDisplayGrade();
+    }
 
-        System.out.println("\n--- Collected Grades ---");
-        for (int j = 0; j < assignmentNames.length; j++) {
-            System.out.println("Assignment: " + assignmentNames[j] +
-                               ", Earned: " + possibleEarned[j] +
-                               ", Possible: " + possiblePoints[j]);
+    private void calculateAndDisplayGrade() {
+       double calculatedPossiblePoints, calculatedEarnedPoints, calcualtedGrade;
+       calculatedPossiblePoints = calculatedEarnedPoints = calcualtedGrade = 0;
+
+        for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
+            calculatedEarnedPoints += possibleEarned[i];
+            calculatedPossiblePoints += possiblePoints[i];
         }
-        System.out.println("------------------------\n");
+
+        calcualtedGrade = calculatedEarnedPoints / calculatedPossiblePoints;
+
+
+        finaleGrade.setText(String.format("%.2f%%", calcualtedGrade));
+        totalPossiblePoints.setText(String.format("%.1f", calculatedPossiblePoints));
+        totalEarnedPoints.setText(String.format("%.1f", calculatedEarnedPoints));
     }
 
     private void loadGradesIntoArray() {
@@ -80,7 +103,8 @@ public class CumulativeController {
         possibleEarned = new Double[addAnotherAssignmentRow];
         possiblePoints = new Double[addAnotherAssignmentRow];
 
-        for (int i = 0; i < addAnotherAssignmentRow; i++) {
+        System.out.println("\n--- Collected Grades ---");
+        for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
             TextField nameField = (TextField) cumlativePointsInput.lookup("#enterAssignmentName-" + i);
             TextField earnedField = (TextField) cumlativePointsInput.lookup("#enterPointsEarned-" + i);
             TextField possibleField = (TextField) cumlativePointsInput.lookup("#enterPossiblePoints-" + i);
@@ -97,8 +121,13 @@ public class CumulativeController {
                 System.err.println("Invalid number format for assignment in row " + i + ": " + e.getMessage());
                 possibleEarned[i] = 0.0; 
                 possiblePoints[i] = 0.0; 
-            }
+            }   
+        
+            System.out.println("Assignment: " + assignmentNames[i] +
+                               ", Earned: " + possibleEarned[i] +
+                               ", Possible: " + possiblePoints[i]);
         }
+        System.out.println("------------------------\n");
     }
-
+       
 }
