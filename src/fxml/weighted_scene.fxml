@@ -70,13 +70,15 @@
 
                   <Text text="%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
          
-                  <Button fx:id="addAnotherWeightCategoryButton" text="&#43; Add Another Weight Category" onAction="#addAnotherAssignmentButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+                  <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Weight Category" onAction="#addWeightCategoryButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
                </children>
 
                <padding>
                   <Insets top="20.0" bottom="20.0" />
                </padding>
             </GridPane>
+            
+            <Button fx:id="gradeWeightInputButton" onAction="#gradeWeightInputButtonPress" text="Submit Grade Weight Categories" GridPane.halignment="CENTER" GridPane.rowIndex="1" styleClass="button"/>
 
             <GridPane fx:id="gradesInput" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
                <columnConstraints>

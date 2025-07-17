@@ -22,8 +22,19 @@ public class WeightedController {
         return 0.00;
     }
 
+    @FXML    
+    private void backButtonPress(ActionEvent event) {       
+         try {
+            Main.setRoot("menu_scene");
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            System.err.println("Failed to switch to Class Info Scene.");
+        }
+    }
+
     @FXML 
-    private void addWeightCategoryPress(ActionEvent event) {       
+    private void addWeightCategoryButtonPress(ActionEvent event) {       
         // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
         // if (buttonCurrentRow == -1) {
         //     buttonCurrentRow = 2;        
@@ -48,14 +59,95 @@ public class WeightedController {
         // GridPane.setRowIndex(addWeightCategoryButton, buttonCurrentRow + 1);
     }
 
-    @FXML    
-    private void backButtonPress(ActionEvent event) {       
-         try {
-            Main.setRoot("menu_scene");
-        } catch (Exception e) {
+    @FXML 
+    private void gradeWeightInputButtonPress(ActionEvent event) {       
+        // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
+        // if (buttonCurrentRow == -1) {
+        //     buttonCurrentRow = 2;        
+        // }        
+        
+        // ComboBox<String> newComboBox = new ComboBox<>();        
+              
+        // newComboBox.setItems(FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "New Category"));        
+        // newComboBox.getStyleClass().add("combo-box");        
+        // newComboBox.setPrefWidth(250.0);
+        // TextField newTextField = new TextField();       
+        // newTextField.setPromptText("e.g., 2, 5, 20, 33, 45, 100");    
+        // newTextField.getStyleClass().add("input-field");   
+        // newTextField.setPrefWidth(250.0);      
+       
+        // Text newPercentageText = new Text("%");     
+        // newPercentageText.getStyleClass().add("subtitle-text");     
+        
+         
+        // weightedGradeForm.addRow(buttonCurrentRow, newComboBox, newTextField, newPercentageText);           
+           
+        // GridPane.setRowIndex(addWeightCategoryButton, buttonCurrentRow + 1);
+    }
 
-            e.printStackTrace();
-            System.err.println("Failed to switch to Class Info Scene.");
-        }
+
+
+    @FXML 
+    private void addWeightCategoryButtonPress(ActionEvent event) {       
+        // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
+        // if (buttonCurrentRow == -1) {
+        //     buttonCurrentRow = 2;        
+        // }        
+        
+        // ComboBox<String> newComboBox = new ComboBox<>();        
+              
+        // newComboBox.setItems(FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "New Category"));        
+        // newComboBox.getStyleClass().add("combo-box");        
+        // newComboBox.setPrefWidth(250.0);
+        // TextField newTextField = new TextField();       
+        // newTextField.setPromptText("e.g., 2, 5, 20, 33, 45, 100");    
+        // newTextField.getStyleClass().add("input-field");   
+        // newTextField.setPrefWidth(250.0);      
+       
+        // Text newPercentageText = new Text("%");     
+        // newPercentageText.getStyleClass().add("subtitle-text");     
+        
+         
+        // weightedGradeForm.addRow(buttonCurrentRow, newComboBox, newTextField, newPercentageText);           
+           
+        // GridPane.setRowIndex(addWeightCategoryButton, buttonCurrentRow + 1);
+    }
+
+    @FXML
+    private void addAnotherAssignmentButtonPress(ActionEvent event) {
+        // TextField newAssignmentNameTextField = new TextField();
+        // newAssignmentNameTextField.setPromptText("e.g. Test 1, Global Project");
+        // newAssignmentNameTextField.getStyleClass().add("input-field");
+        // newAssignmentNameTextField.setPrefWidth(250.0);
+        // newAssignmentNameTextField.setId("enterAssignmentName-" + (addAnotherAssignmentRow - 1));
+        // cumlativePointsInput.add(newAssignmentNameTextField, 0, addAnotherAssignmentRow);
+
+        // TextField newEarnedPointsTextField = new TextField();
+        // newEarnedPointsTextField.setPromptText("e.g., 2.0, 23.5, 78, 100");
+        // newEarnedPointsTextField.getStyleClass().add("input-field");
+        // newEarnedPointsTextField.setPrefWidth(250.0);
+        // newEarnedPointsTextField.setId("enterPointsEarned-" + (addAnotherAssignmentRow - 1));
+        // cumlativePointsInput.add(newEarnedPointsTextField, 1, addAnotherAssignmentRow);
+
+        // Text newPercentageText = new Text("/");
+        // newPercentageText.getStyleClass().add("subtitle-text");
+        // cumlativePointsInput.add(newPercentageText, 2, addAnotherAssignmentRow);
+
+        // TextField newPossiblePointsTextField = new TextField();
+        // newPossiblePointsTextField.setPromptText("e.g., 2.0, 23.5, 78, 100");
+        // newPossiblePointsTextField.getStyleClass().add("input-field");
+        // newPossiblePointsTextField.setPrefWidth(250.0);
+        // newPossiblePointsTextField.setId("enterPossiblePoints-" + (addAnotherAssignmentRow - 1));
+        // cumlativePointsInput.add(newPossiblePointsTextField, 3, addAnotherAssignmentRow);
+
+
+        addAnotherAssignmentRow++;
+        GridPane.setRowIndex(addAnotherAssignmentButton, addAnotherAssignmentRow);
+    }
+
+    @FXML
+    private void calculateButtonPress(ActionEvent event) {
+        // loadGradesIntoArray();
+        // calculateAndDisplayGrade();
     }
 }
