@@ -7,22 +7,40 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
+<<<<<<< HEAD
 <ScrollPane fx:controller="WeightedController"  hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" fitToWidth="true"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
    <content>
       <GridPane gridLinesVisible="true" alignment="CENTER" >
+=======
+<ScrollPane fx:controller="WeightedController" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" fitToWidth="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+   <content>
+
+      <GridPane alignment="CENTER" >
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
          <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" />
          </columnConstraints>
-
+   
          <rowConstraints>
+<<<<<<< HEAD
             <RowConstraints percentHeight="20.0" valignment="TOP" vgrow="NEVER" />
             <RowConstraints percentHeight="60.0" valignment="CENTER" vgrow="ALWAYS" />
             <RowConstraints percentHeight="20.0" valignment="BOTTOM"  vgrow="NEVER" />
+=======
+            <RowConstraints valignment="TOP" vgrow="NEVER" />
+            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints valignment="BOTTOM"  vgrow="NEVER" />
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
          </rowConstraints>
+   
 
 
          <children>
+<<<<<<< HEAD
             <GridPane gridLinesVisible="true" GridPane.rowIndex="0">
+=======
+            <GridPane GridPane.rowIndex="0">
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
                <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" />
                </columnConstraints>
@@ -37,14 +55,26 @@
                   <VBox alignment="CENTER" GridPane.rowIndex="1">
                      <children>
                         <Text text="Grade Calculator" styleClass="title-text" />
+<<<<<<< HEAD
+=======
+                        
+                        <HBox alignment="CENTER">
+                           <Label text="Finale Grade:" styleClass="input-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                           <Text fx:id="finaleGrade" text="--" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="subtitle-text" />
+                        </HBox>
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
                      </children>
                   </VBox>
                </children>
             </GridPane>
 
+<<<<<<< HEAD
             <!-- visible="false" managed="false"  -->
 
             <GridPane gridLinesVisible="true" fx:id="weightedCategoryGride" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
+=======
+            <GridPane fx:id="gradeWeightsInput" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
                <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
                   <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
@@ -59,6 +89,7 @@
 
                <children>
                   <Label text="Weight Category" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
+<<<<<<< HEAD
                   <TextField fx:id="enterWeightPercentage" id="enterWeightCategory-0" promptText="e.g. Test, Homework, Quiz" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
 
                   <Label text="Weight Percentage" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
@@ -72,6 +103,42 @@
             <Button fx:id="setWeightCategoriesButton" onAction="#setWeightCategoriesPress" text="Ready to Input your Grades" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" GridPane.rowIndex="1" styleClass="button"/>
 
             <!-- <Label text="Category" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
+=======
+                  <TextField fx:id="enterWeightCategory" id="enterWeightCategory-0" promptText="e.g. Test 1, Global Project" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
+
+                  <Label text="Percentage of Grade" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
+                  <TextField fx:id="enterPercentageOfGrade" id="enterPercentageOfGrade-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+
+                  <Text text="%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+         
+                  <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Weight Category" onAction="#addWeightCategoryButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+               </children>
+
+               <padding>
+                  <Insets top="20.0" bottom="20.0" />
+               </padding>
+            </GridPane>
+            
+            <Button fx:id="gradeWeightInputButton" onAction="#gradeWeightInputButtonPress" text="Submit Grade Weight Categories" GridPane.halignment="CENTER" GridPane.rowIndex="1" styleClass="button"/>
+
+            <GridPane fx:id="gradesInput" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
+                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
+                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
+               </columnConstraints>
+
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+
+               <children>
+                  <Label text="Category" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
                   <ComboBox fx:id="myComboBox" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="combo-box">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
@@ -80,11 +147,39 @@
                            <String fx:value="Item 3" />
                         </FXCollections>
                      </items>
+<<<<<<< HEAD
                   </ComboBox> -->
             <!-- <Button fx:id="continueButton" onAction="#continueButtonPress" text="Ready to Input your Grades" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/> -->
          </children>
 
          <padding>   
+=======
+                  </ComboBox>
+                  
+                  <Label text="Assignment Name" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
+                  <TextField fx:id="enterAssignmentName" id="enterAssignmentName-0" promptText="e.g. Test 1, Global Project" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
+
+                  <Label text="Points Earned" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="subtitle-text" />
+                  <TextField fx:id="enterPointsEarned" id="enterPointsEarned-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
+
+                  <Text text="/" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="3" />
+
+                  <Label text="Possible Points" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="subtitle-text" />
+                  <TextField fx:id="enterPossiblePoints" id="enterPossiblePoints-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="input-field" />
+         
+                  <Button fx:id="addAnotherAssignmentButton" text="&#43; Add Another Assignment" onAction="#addAnotherAssignmentButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
+               </children>
+
+               <padding>
+                  <Insets top="20.0" bottom="20.0" />
+               </padding>
+            </GridPane>
+
+            <Button fx:id="calculateButton" onAction="#calculateButtonPress" text="Calculate Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
+         </children>
+
+         <padding>
+>>>>>>> refs/remotes/origin/5-weighted-grade-calculator
             <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
          </padding>
       </GridPane>
