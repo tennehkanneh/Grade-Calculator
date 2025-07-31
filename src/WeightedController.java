@@ -1,44 +1,42 @@
+import java.util.Optional;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class WeightedController {
-
     private int addWeightCategoryRow;
+    private boolean readyToCalcualteGrade = false;
+    private String[][] weightInfoAsStrings;
     FXCollections weights;
-
-    public enum Categories { 
-        TEST, 
-        HOMEWORK, 
-        ASSIGNMENT, 
-        QUIZ, 
-        PROJECT, 
-        GROUP_PROJECT, 
-        OTHER1, 
-        OTHER2, 
-        OTHER3 
-    }
 
     @FXML
     private GridPane weightedCategoryGride;
 
     @FXML
+    private GridPane gradePointsGrid;
+    
+    @FXML
+    private VBox weightPointsInput;
+    
+    @FXML
     private Button addWeightCategoryButton;
 
     @FXML
-    private Button setWeightCategoriesButton;
+    private Button weightCategoriesButton;
 
     @FXML
     public void initialize() {
         addWeightCategoryRow = GridPane.getRowIndex(addWeightCategoryButton);
-    }
-
-    public double getWeight() {
-        return 0.00;
     }
 
     @FXML    
@@ -53,7 +51,6 @@ public class WeightedController {
     }
 
     @FXML 
-<<<<<<< HEAD
     private void addWeightCategoryPress(ActionEvent event) {       
         TextField newAssignmentNameTextField = new TextField();
         newAssignmentNameTextField.setPromptText("e.g. Test, Homework, Quiz");
@@ -79,97 +76,101 @@ public class WeightedController {
     }
 
     @FXML 
-    private void setWeightCategoriesPress(ActionEvent event) {
-        // assignmentNames = new String[addAnotherAssignmentRow];
-        // possibleEarned = new Double[addAnotherAssignmentRow];
-        // possiblePoints = new Double[addAnotherAssignmentRow];
+    private void toggleOnWeightCategoriesInputs(ActionEvent event) {
+        if (weightCategoriesButton.getText().equals("Set Weighted Categories")) {
+            setWeightCategoriesPress();
 
-        // System.out.println("\n--- Collected Grades ---");
-        // for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
-        //     TextField nameField = (TextField) cumlativePointsInput.lookup("#enterAssignmentName-" + i);
-        //     TextField earnedField = (TextField) cumlativePointsInput.lookup("#enterPointsEarned-" + i);
-        //     TextField possibleField = (TextField) cumlativePointsInput.lookup("#enterPossiblePoints-" + i);
-
-        //     String name = (nameField != null) ? nameField.getText() : "";
-        //     String earnedText = (earnedField != null) ? earnedField.getText() : "";
-        //     String possibleText = (possibleField != null) ? possibleField.getText() : "";
-
-        //     assignmentNames[i] = name;
-        //     try {
-        //         possibleEarned[i] = Double.parseDouble(earnedText);
-        //         possiblePoints[i] = Double.parseDouble(possibleText);
-        //     } catch (NumberFormatException e) {
-        //         System.err.println("Invalid number format for assignment in row " + i + ": " + e.getMessage());
-        //         possibleEarned[i] = 0.0; 
-        //         possiblePoints[i] = 0.0; 
-        //     }   
-=======
-    private void addWeightCategoryButtonPress(ActionEvent event) {       
-        // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
-        // if (buttonCurrentRow == -1) {
-        //     buttonCurrentRow = 2;        
-        // }        
->>>>>>> refs/remotes/origin/5-weighted-grade-calculator
-        
-        //     System.out.println("Assignment: " + assignmentNames[i] +
-        //                        ", Earned: " + possibleEarned[i] +
-        //                        ", Possible: " + possiblePoints[i]);
-        // }
-        // System.out.println("------------------------\n");
+            Alert explainHowToUse = new Alert(AlertType.CONFIRMATION);
+            explainHowToUse.setHeaderText(null);
+            explainHowToUse.setContentText("For Weighted Grade Categories:\n"
+                                                    + "•  Possible Points: Enter the TOTAL points available for ALL assignments in this category.\n"
+                                                    + "•  Points Earned: Enter your TOTAL points earned for ALL assignments in this category.\n"
+                                                    + "If you're having trouble calculating these totals, use the Cumulative Calculator for this specific category.");
+            explainHowToUse.showAndWait(); 
+        } else if (weightCategoriesButton.getText().equals("Change Weight Categories")) {
+            unsetWeightCategoriesPress();
+        } else {
+            System.err.println("Unable to inpute weighted categories\n Button text: " + weightCategoriesButton.getText());
+        }
     }
 
-    @FXML 
-    private void gradeWeightInputButtonPress(ActionEvent event) {       
-        // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
-        // if (buttonCurrentRow == -1) {
-        //     buttonCurrentRow = 2;        
-        // }        
-        
-        // ComboBox<String> newComboBox = new ComboBox<>();        
-              
-        // newComboBox.setItems(FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "New Category"));        
-        // newComboBox.getStyleClass().add("combo-box");        
-        // newComboBox.setPrefWidth(250.0);
-        // TextField newTextField = new TextField();       
-        // newTextField.setPromptText("e.g., 2, 5, 20, 33, 45, 100");    
-        // newTextField.getStyleClass().add("input-field");   
-        // newTextField.setPrefWidth(250.0);      
-       
-        // Text newPercentageText = new Text("%");     
-        // newPercentageText.getStyleClass().add("subtitle-text");     
-        
-         
-        // weightedGradeForm.addRow(buttonCurrentRow, newComboBox, newTextField, newPercentageText);           
-           
-        // GridPane.setRowIndex(addWeightCategoryButton, buttonCurrentRow + 1);
+    private void setWeightCategoriesPress() {
+        weightInfoAsStrings = new String[2][addWeightCategoryRow];
+
+        for (int i = 0; i < addWeightCategoryRow - 1; i++) {
+            TextField categoryName = (TextField) weightedCategoryGride.lookup("#enterWeightCategory-" + i);
+
+            String name = (categoryName != null) ? categoryName.getText() : "";
+
+            weightInfoAsStrings[0][i] = name;
+            System.out.print(weightInfoAsStrings[0][i] + " ");
+            categoryName.setDisable(true);
+        }
+
+        System.out.println();
+
+        for (int i = 0; i < addWeightCategoryRow - 1; i++) {
+            TextField categoryWeight = (TextField) weightedCategoryGride.lookup("#enterWeight-" + i);
+
+            String earnedText = (categoryWeight != null) ? categoryWeight.getText() : "";
+
+            weightInfoAsStrings[1][i] = earnedText;
+            System.out.print(weightInfoAsStrings[1][i] + " ");
+            categoryWeight.setDisable(true);
+        }
+
+        addWeightCategoryButton.setDisable(true);
+        createAssignmentInputGrid();
+        weightPointsInput.setVisible(true);
+        weightPointsInput.setManaged(true);
+
+        weightCategoriesButton.setText("Change Weight Categories");
     }
 
+    private void unsetWeightCategoriesPress() {
+        for (int i = 0; i < addWeightCategoryRow - 1; i++) {
+            TextField categoryName = (TextField) weightedCategoryGride.lookup("#enterWeightCategory-" + i);
+            categoryName.setDisable(false);
 
+            TextField categoryWeight = (TextField) weightedCategoryGride.lookup("#enterWeight-" + i);
+            categoryWeight.setDisable(false);
+        } 
+        addWeightCategoryButton.setDisable(false);
+        weightPointsInput.setVisible(false);
+        weightPointsInput.setManaged(false);
+        weightCategoriesButton.setText("Set Weighted Categories");
+    }
 
-    @FXML 
-    private void addWeightCategoryButtonPress(ActionEvent event) {       
-        // int buttonCurrentRow = GridPane.getRowIndex(addWeightCategoryButton);     
-        // if (buttonCurrentRow == -1) {
-        //     buttonCurrentRow = 2;        
-        // }        
-        
-        // ComboBox<String> newComboBox = new ComboBox<>();        
-              
-        // newComboBox.setItems(FXCollections.observableArrayList("Item 1", "Item 2", "Item 3", "New Category"));        
-        // newComboBox.getStyleClass().add("combo-box");        
-        // newComboBox.setPrefWidth(250.0);
-        // TextField newTextField = new TextField();       
-        // newTextField.setPromptText("e.g., 2, 5, 20, 33, 45, 100");    
-        // newTextField.getStyleClass().add("input-field");   
-        // newTextField.setPrefWidth(250.0);      
-       
-        // Text newPercentageText = new Text("%");     
-        // newPercentageText.getStyleClass().add("subtitle-text");     
-        
-         
-        // weightedGradeForm.addRow(buttonCurrentRow, newComboBox, newTextField, newPercentageText);           
+    private void createAssignmentInputGrid() {
+        for (int i = 2; i <= addWeightCategoryRow - 1; i++) {
+
+            // ComboBox newWeightCategoryBox = new ComboBox<>();
            
-        // GridPane.setRowIndex(addWeightCategoryButton, buttonCurrentRow + 1);
+            TextField newAssignmentNameTextField = new TextField();
+            newAssignmentNameTextField.setPromptText("e.g. Test 1, Global Project");
+            newAssignmentNameTextField.getStyleClass().add("input-field");
+            newAssignmentNameTextField.setPrefWidth(250.0);
+            newAssignmentNameTextField.setId("enterAssignmentName-" + (i - 1));
+            gradePointsGrid.add(newAssignmentNameTextField, 0, i);
+
+            TextField newEarnedPointsTextField = new TextField();
+            newEarnedPointsTextField.setPromptText("e.g., 2.0, 23.5, 78, 100");
+            newEarnedPointsTextField.getStyleClass().add("input-field");
+            newEarnedPointsTextField.setPrefWidth(250.0);
+            newEarnedPointsTextField.setId("enterPointsEarned-" +  (i - 1));
+            gradePointsGrid.add(newEarnedPointsTextField, 1, i);
+
+            Text newDivisionText = new Text("/");
+            newDivisionText.getStyleClass().add("subtitle-text");
+            gradePointsGrid.add(newDivisionText, 2, i);
+
+            TextField newPossiblePointsTextField = new TextField();
+            newPossiblePointsTextField.setPromptText("e.g., 2.0, 23.5, 78, 100");
+            newPossiblePointsTextField.getStyleClass().add("input-field");
+            newPossiblePointsTextField.setPrefWidth(250.0);
+            newPossiblePointsTextField.setId("enterPossiblePoints-" +  (i - 1));
+            gradePointsGrid.add(newPossiblePointsTextField, 3, i);
+        }
     }
 
     @FXML
@@ -200,12 +201,13 @@ public class WeightedController {
         // cumlativePointsInput.add(newPossiblePointsTextField, 3, addAnotherAssignmentRow);
 
 
-        addAnotherAssignmentRow++;
-        GridPane.setRowIndex(addAnotherAssignmentButton, addAnotherAssignmentRow);
+        // addAnotherAssignmentRow++;
+        // GridPane.setRowIndex(addAnotherAssignmentButton, addAnotherAssignmentRow);
     }
 
     @FXML
     private void calculateButtonPress(ActionEvent event) {
+        if (!readyToCalcualteGrade) { return; }
         // loadGradesIntoArray();
         // calculateAndDisplayGrade();
     }
