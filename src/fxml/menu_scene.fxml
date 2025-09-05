@@ -25,8 +25,8 @@
 
       <HBox alignment="CENTER" spacing="10" GridPane.rowIndex="1" >
          <children>
-            <Button fx:id="weightedButton" onAction="#weightedButtonPress" text="Weighted Grade Calculation"  styleClass="button"/>
-            <Button fx:id="cumulativeButton" onAction="#cumulativeButtonPress" text="Cumlative Points Calculation" styleClass="button"/>
+            <Button fx:id="weightedButton" onAction="#weightedButtonPress" text="Calculate Weighted Grade"  styleClass="button"/>
+            <Button fx:id="cumulativeButton" onAction="#cumulativeButtonPress" text="Calculate Cumlative Points" styleClass="button"/>
          </children>
       </HBox>
    </children>
