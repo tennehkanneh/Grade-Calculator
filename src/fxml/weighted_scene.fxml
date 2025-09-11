@@ -5,9 +5,10 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 
-<ScrollPane fx:controller="WeightedController" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" fitToWidth="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+<!--alignment="CENTER"-->
+<ScrollPane  fx:controller="WeightedController" vbarPolicy="AS_NEEDED" fitToWidth="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
     <content>
-        <VBox spacing="20">
+        <VBox spacing="80" alignment="CENTER">
             <children>
                 <!-- HEADER -->
                 <VBox spacing="10">
@@ -19,25 +20,19 @@
                     </HBox>
                 </VBox>
 
-                <!--Grade Weights & Categories-->
-                <GridPane fx:id="weightedCategoryGride" hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" halignment="LEFT" />
-                    </columnConstraints>
-
-                    <rowConstraints>
-                        <RowConstraints />
-                        <RowConstraints />
-                        <RowConstraints />
-                    </rowConstraints>
-
+                <!--Grade-->
+                <HBox spacing="20" fx:id="finalCalculationsBox" alignment="CENTER">
                     <children>
-                        <Text text="Category and Weights" GridPane.rowIndex="0" styleClass="input-label"/>
+                        <Text text="Final Grade: " styleClass="grade-label"/>
+                        <Text text="- - . - -" styleClass="grade-text"/>
                     </children>
-                </GridPane>
 
-                <VBox spacing="20" fx:id="finalCalculations">
-                </VBox>
+                    <padding>
+                        <Insets top="80.0" right="0" bottom="100.0" left="0" />
+                    </padding>
+                </HBox>
+
+                <Button fx:id="reloadButton" onAction="#reloadButtonPress" text="Reload Updated Grades" styleClass="button"/>
             </children>
 
             <padding>
