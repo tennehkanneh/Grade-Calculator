@@ -21,17 +21,19 @@
                 </VBox>
 
                 <!--Grade-->
-                <HBox spacing="20" fx:id="finalCalculationsBox" alignment="CENTER">
-                    <children>
-                        <Text text="Final Grade: " styleClass="grade-label"/>
-                        <Text text="- - . - -" styleClass="grade-text"/>
-                    </children>
+                <VBox>
+                    <HBox spacing="20" fx:id="finalCalculationsBox" alignment="CENTER">
+                        <children>
+                            <Text text="Final Grade: " styleClass="grade-label"/>
+                            <Text text="- - . - -" styleClass="grade-text"/>
+                        </children>
 
-                    <padding>
-                        <Insets top="80.0" right="0" bottom="100.0" left="0" />
-                    </padding>
-                </HBox>
-
+                        <padding>
+                            <Insets top="80.0" right="0" bottom="100.0" left="0" />
+                        </padding>
+                    </HBox>
+                </VBox>
+                <!--Reload Button-->
                 <Button fx:id="reloadButton" onAction="#reloadButtonPress" text="Reload Updated Grades" styleClass="button"/>
             </children>
 
