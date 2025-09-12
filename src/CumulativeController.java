@@ -8,117 +8,102 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 public class CumulativeController {
-    String pattern = "#.00";
-    DecimalFormat format = new DecimalFormat(pattern);
+    private static final String ASSIGNMENTS_FILE = "assignment-grades.csv";
+    private static final String DELIMITER = ",";
+    private static final String PATTERN = "#.00";
 
-    private final String ASSIGNMENTS_FILE = "assignment-grades.csv";
-    private final String DELIMITER = ",";
-
-    double totalEarned = 0.0;
-    double totalPossible = 0.0;
-
-    @FXML
-    Text finaleGradeText;
+    private double totalEarned = 0.0;
+    private double totalPossible = 0.0;
+    private final DecimalFormat format = new DecimalFormat(PATTERN);
 
     @FXML
-    Text earnedPointsText;
+    private Text finaleGradeText;
 
     @FXML
-    Text cumlativePointsText;
+    private Text earnedPointsText;
+
+    @FXML
+    private Text cumlativePointsText;
 
     public void initialize() {
         loadAssignments();
 
-        finaleGradeText.setText("" + format.format((totalEarned / totalPossible) * 100.0));
-        earnedPointsText.setText("" + totalEarned);
-        cumlativePointsText.setText("" + totalPossible);
+        if (totalPossible > 0) {
+            double gradePercent = (totalEarned / totalPossible) * 100.0;
+            finaleGradeText.setText(format.format(gradePercent));
+        } else {
+            finaleGradeText.setText("N/A");
+        }
+
+        earnedPointsText.setText(format.format(totalEarned));
+        cumlativePointsText.setText(format.format(totalPossible));
     }
 
     @FXML
     private void backButtonPress(ActionEvent event) {
-        try {
-            Main.setRoot("menu_scene");
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            System.err.println("Failed to switch to Class Info Scene.");
-        }
+        switchScene("menu_scene", "Failed to switch to Menu Scene.");
     }
 
     @FXML
     private void reloadButtonPress(ActionEvent event) {
-        try {
-            Main.setRoot("cumulative_scene");
-        } catch (Exception e) {
+        switchScene("cumulative_scene", "Failed to reload Cumulative Scene.");
+    }
 
+    private void switchScene(String sceneName, String errorMessage) {
+        try {
+            Main.setRoot(sceneName);
+        } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Failed to switch to Class Info Scene.");
+            System.err.println(errorMessage);
         }
     }
 
     private void loadAssignments() {
-        String line;
-
         try (BufferedReader br = new BufferedReader(new FileReader(ASSIGNMENTS_FILE))) {
-            System.out.println("\n--- Collection of Assignments from CSV ---");
+            String headerLine = br.readLine();
+            if (headerLine == null) {
+                System.err.println("CSV file is empty.");
+                return;
+            }
 
-            line = br.readLine();
-            String[] heading = line.split(DELIMITER);
+            String[] headings = headerLine.split(DELIMITER);
+            String line;
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(DELIMITER);
 
-                if (data.length >= 4) {
-                    String name = data[0].trim();
+                if (data.length < 4) {
+                    System.err.println("Skipping malformed row: " + line);
+                    continue;
+                }
 
-                    String category = data[1].trim();
+                String name = data[0].trim();
+                String category = data[1].trim();
 
+                try {
                     double earned = Double.parseDouble(data[2].trim());
-
                     double possible = Double.parseDouble(data[3].trim());
 
-                    System.out.println(heading[0] + ": " + name + ", "
-                            + heading[1] + ": " + category + ", "
-                            + heading[2] + ": " + earned + ", "
-                            + heading[3] + ": " + possible);
+                    System.out.println(
+                        headings[0] + ": " + name + ", " +
+                        headings[1] + ": " + category + ", " +
+                        headings[2] + ": " + earned + ", " +
+                        headings[3] + ": " + possible
+                    );
 
-                    calculateGrade(earned, possible);
-                } else {
-                    System.err.println("Skipping malformed row: " + line);
+                    addToTotals(earned, possible);
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid number in row: " + line);
                 }
             }
 
         } catch (IOException e) {
-            System.err.println("Unable to Read Weight Category CSV \n");
+            System.err.println("Unable to read assignment CSV.");
         }
-        System.out.println("------------------------\n");
     }
 
-    private void calculateGrade(double earned, double possible) {
+    private void addToTotals(double earned, double possible) {
         totalEarned += earned;
         totalPossible += possible;
     }
-
-    // @FXML
-    // private void calculateButtonPress(ActionEvent event) {
-    // loadGradesIntoArray();
-    // calculateAndDisplayGrade();
-    // }
-
-    // private void calculateAndDisplayGrade() {
-    // double calculatedPossiblePoints, calculatedEarnedPoints, calcualtedGrade;
-    // calculatedPossiblePoints = calculatedEarnedPoints = calcualtedGrade = 0;
-
-    // for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
-    // calculatedEarnedPoints += possibleEarned[i];
-    // calculatedPossiblePoints += possiblePoints[i];
-    // }
-
-    // calcualtedGrade = calculatedEarnedPoints / calculatedPossiblePoints;
-
-    // finaleGrade.setText(String.format("%.2f%%", calcualtedGrade));
-    // totalPossiblePoints.setText(String.format("%.1f", calculatedPossiblePoints));
-    // totalEarnedPoints.setText(String.format("%.1f", calculatedEarnedPoints));
-    // }
-
 }

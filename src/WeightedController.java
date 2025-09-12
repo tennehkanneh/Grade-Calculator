@@ -1,178 +1,144 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class WeightedController {
-    private final String WEIGHT_CATEGORY_FILE = "category-weight.csv";
-    private final String ASSIGNMENTS_FILE = "assignment-grades.csv";
-    private final String DELIMITER = ",";
+    private static final String WEIGHT_CATEGORY_FILE = "category-weight.csv";
+    private static final String ASSIGNMENTS_FILE = "assignment-grades.csv";
+    private static final String DELIMITER = ",";
+    private static final String PATTERN = "#.00";
 
-    private String[] categoryList = new String[50];
-    private Double[] weightList = new Double[50];
+    private String[] categoryList = new String[100];
+    private Double[] weightList = new Double[100];
+    private Double[] totalEarnedInCategory = new Double[100];
+    private Double[] totalPossibleInCategory = new Double[100];
+
+    private double weightedGrade = 0.0;
+    private double extraCredit = 0.0;
+
+    private final DecimalFormat format = new DecimalFormat(PATTERN);
 
     @FXML
-    GridPane weightedCategoryGride;
-
-    @FXML
-    HBox finalCalculationsBox;
+    private Text finaleGradeText;
 
     public void initialize() {
-       
+        loadWeightCategoryCSV();
+        loadAssignments();
+        calculateFinalGrade();
     }
 
     @FXML
     private void backButtonPress(ActionEvent event) {
-        try {
-            Main.setRoot("menu_scene");
-        } catch (Exception e) {
-
-            e.printStackTrace();
-            System.err.println("Failed to switch to Class Info Scene.");
-        }
+        switchScene("menu_scene", "Failed to switch to Menu Scene.");
     }
 
     @FXML
     private void reloadButtonPress(ActionEvent event) {
-        try {
-            Main.setRoot("weighted_scene");
-        } catch (Exception e) {
+        switchScene("weighted_scene", "Failed to reload Weighted Scene.");
+    }
 
+    private void switchScene(String sceneName, String errorMessage) {
+        try {
+            Main.setRoot(sceneName);
+        } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("Failed to switch to Class Info Scene.");
+            System.err.println(errorMessage);
         }
     }
 
-    // private void loadWeightCategoryCSV() {
-    //     String line;
-    //     int index = 0;
+    private void loadWeightCategoryCSV() {
+        try (BufferedReader br = new BufferedReader(new FileReader(WEIGHT_CATEGORY_FILE))) {
+            String header = br.readLine();
 
-    //     try (BufferedReader br = new BufferedReader(new FileReader(WEIGHT_CATEGORY_FILE))) {
-    //         System.out.println("\n--- Collected Weighted Categories from CSV ---");
+            int index = 0;
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(DELIMITER);
 
-    //         line = br.readLine();
-    //         String[] heading = line.split(DELIMITER);
+                if (data.length >= 2) {
+                    categoryList[index] = data[0].trim();
+                    weightList[index] = Double.parseDouble(data[1].trim());
 
-    //         while ((line = br.readLine()) != null) {
-    //             String[] data = line.split(DELIMITER);
+                    totalEarnedInCategory[index] = 0.0;
+                    totalPossibleInCategory[index] = 0.0;
 
-    //             if (data.length >= 2) {
-    //                 String category = data[0].trim();
-    //                 categoryList[index] = category;
+                    System.out.println("Category: " + categoryList[index] +
+                                       " Weight: " + weightList[index]);
+                    index++;
+                } else {
+                    System.err.println("Skipping malformed row: " + line);
+                }
+            }
 
-    //                 double weight = Double.parseDouble(data[1].trim());
-    //                 weightList[index] = weight;
+        } catch (IOException e) {
+            System.err.println("Unable to read Weight Category CSV.");
+        }
+    }
 
-    //                 System.out.println(heading[0] + ": " + category + "\t\t " + heading[1] + ": " + weight);
+    private void loadAssignments() {
+        try (BufferedReader br = new BufferedReader(new FileReader(ASSIGNMENTS_FILE))) {
+            String header = br.readLine();
 
-    //                 HBox box = new HBox();
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(DELIMITER);
 
-    //                 Label categoryLabel = new Label();
-    //                 categoryLabel.setText(category + ": ");
-    //                 categoryLabel.getStyleClass().add("subtitle-text");
+                if (data.length >= 4) {
+                    String name = data[0].trim();
+                    String category = data[1].trim();
+                    double earned = Double.parseDouble(data[2].trim());
+                    double possible = Double.parseDouble(data[3].trim());
 
-    //                 Text weightText = new Text();
-    //                 weightText.setText((weight * 100) + "%");
+                    System.out.println("Assignment: " + name +
+                                       ", Category: " + category +
+                                       ", Earned: " + earned +
+                                       ", Possible: " + possible);
 
-    //                 box.getChildren().addAll(categoryLabel, weightText);
-    //                 weightedCategoryGride.add(box, 0, index + 1);
-    //                 index++;
-    //             } else {
-    //                 System.err.println("Skipping malformed row: " + line);
-    //             }
-    //         }
+                    addGradeToCategory(category, earned, possible);
+                } else {
+                    System.err.println("Skipping malformed row: " + line);
+                }
+            }
 
-    //     } catch (IOException e) {
-    //         System.err.println("Unable to Read Weight Category CSV \n");
-    //     }
-    //     System.out.println("------------------------\n");
-    // }
+        } catch (IOException e) {
+            System.err.println("Unable to read Assignment CSV.");
+        }
+    }
 
-    // private void loadAssignments() {
-    //     String line;
-    //     int index = 0;
+    private void addGradeToCategory(String categoryName, double earned, double possible) {
+        if (categoryName == null || categoryName.isEmpty()) {
+            extraCredit += earned;
+            return;
+        }
 
-    //     try (BufferedReader br = new BufferedReader(new FileReader(ASSIGNMENTS_FILE))) {
-    //         System.out.println("\n--- Collection of Assignments from CSV ---");
+        for (int i = 0; i < categoryList.length && categoryList[i] != null; i++) {
+            if (categoryName.equals(categoryList[i])) {
+                totalEarnedInCategory[i] += earned;
+                totalPossibleInCategory[i] += possible;
+                return;
+            }
+        }
 
-    //         line = br.readLine();
-    //         String[] heading = line.split(DELIMITER);
+        System.err.println("Category not found for: " + categoryName);
+    }
 
-    //         while ((line = br.readLine()) != null) {
-    //             String[] data = line.split(DELIMITER);
+    private void calculateFinalGrade() {
+        weightedGrade = 0.0;
 
-    //             if (data.length >= 4) {
-    //                 String name = data[0].trim();
-                    
-    //                 String category = data[1].trim();
+        for (int i = 0; i < categoryList.length && categoryList[i] != null; i++) {
+            if (totalPossibleInCategory[i] > 0) {
+                double categoryAverage = totalEarnedInCategory[i] / totalPossibleInCategory[i];
+                weightedGrade += weightList[i] * categoryAverage;
+            }
+        }
 
-    //                 int earned = Integer.parseInt(data[2].trim());
+        double finalGradePercent = (weightedGrade * 100.0) + extraCredit;
 
-    //                 int possible = Integer.parseInt(data[3].trim());
-
-
-    //                 System.out.println(heading[0] + ": " + name + ", " 
-    //                                     + heading[1] + ": " + category + ", "
-    //                                     + heading[2] + ": " + earned + ", "
-    //                                     + heading[3] + ": " + possible);
-            
-
-    //                 index++;
-    //             } else {
-    //                 System.err.println("Skipping malformed row: " + line);
-    //             }
-    //         }
-
-    //     } catch (IOException e) {
-    //         System.err.println("Unable to Read Weight Category CSV \n");
-    //     }
-    //     System.out.println("------------------------\n");
-    // }
-
-    // private void calculateAndDisplay() {
-    //     loadWeightCategoryCSV();
-    //     loadAssignments();
-
-    // }
-
-    // @FXML
-    // private void calculateButtonPress(ActionEvent event) {
-    // String csvFile = "weighted_grades.csv";
-
-    // loadWeightedGradesFromCsv(csvFile);
-    // finaleGrade.setText(String.format("%.2f%%", calculatedGrade));
-    // }
-
-    // private void loadWeightedGradesFromCsv(String filePath) {
-    // String line;
-    // String cvsSplitBy = ",";
-
-    // calculatedGrade = 0.0;
-
-    // try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-    //
-    // while ((line = br.readLine()) != null) {
-    // String[] data = line.split(cvsSplitBy);
-    // if (data.length >= 2) {
-    //
-    // }
-    // }
-    // }
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // System.err.println("Failed to read the CSV file.");
-    // } catch (NumberFormatException e) {
-    // System.err.println("Invalid number format in CSV file: " + e.getMessage());
-    // }
-    //
-    // }
-
-    // private void calculateGrade(double pointsEarned, double weight) {
-    // calculatedGrade += (pointsEarned * (weight / 100));
-    // }
+        finaleGradeText.setText(format.format(finalGradePercent));
+    }
 }
