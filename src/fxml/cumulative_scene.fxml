@@ -29,7 +29,7 @@
                         <HBox spacing="20" fx:id="finalCalculationsBox" alignment="CENTER">
                             <children>
                                 <Text text="Final Grade: " styleClass="grade-label"/>
-                                <Text text="- - . - -" styleClass="grade-text"/>
+                                <Text fx:id="finaleGradeText" text="- - . - -" styleClass="grade-text"/>
                             </children>
                         </HBox>
 
@@ -40,7 +40,7 @@
                                 <HBox spacing="20" fx:id="earnedPointsBox" alignment="CENTER">
                                     <children>
                                         <Text text="Earned Points: " styleClass="input-label"/>
-                                        <Text text="- -" styleClass="subtitle-text"/>
+                                        <Text fx:id="earnedPointsText" text="- -" styleClass="subtitle-text"/>
                                     </children>
                                 </HBox>
 
@@ -48,7 +48,7 @@
                                 <HBox spacing="20" fx:id="cumlativePointsBox" alignment="CENTER">
                                     <children>
                                         <Text text="Earned Points: " styleClass="input-label"/>
-                                        <Text text="- -" styleClass="subtitle-text"/>
+                                        <Text fx:id="cumlativePointsText" text="- -" styleClass="subtitle-text"/>
                                     </children>
                                 </HBox>
 

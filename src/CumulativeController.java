@@ -1,31 +1,38 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 public class CumulativeController {
-    private String[] assignmentNames;
-    private Double[] possibleEarned;
-    private Double[] possiblePoints;
+    String pattern = "#.00";
+    DecimalFormat format = new DecimalFormat(pattern);
 
-    private int addAnotherAssignmentRow;
+    private final String ASSIGNMENTS_FILE = "assignment-grades.csv";
+    private final String DELIMITER = ",";
 
-    @FXML
-    private GridPane cumlativePointsInput;
-
-    @FXML
-    private Button addAnotherAssignmentButton;
+    double totalEarned = 0.0;
+    double totalPossible = 0.0;
 
     @FXML
-    private Text finaleGrade;
+    Text finaleGradeText;
 
     @FXML
-    private Text totalPossiblePoints;
+    Text earnedPointsText;
 
     @FXML
-    private Text totalEarnedPoints;
+    Text cumlativePointsText;
+
+    public void initialize() {
+        loadAssignments();
+
+        finaleGradeText.setText("" + format.format((totalEarned / totalPossible) * 100.0));
+        earnedPointsText.setText("" + totalEarned);
+        cumlativePointsText.setText("" + totalPossible);
+    }
 
     @FXML
     private void backButtonPress(ActionEvent event) {
@@ -38,7 +45,7 @@ public class CumulativeController {
         }
     }
 
-     @FXML
+    @FXML
     private void reloadButtonPress(ActionEvent event) {
         try {
             Main.setRoot("cumulative_scene");
@@ -49,91 +56,69 @@ public class CumulativeController {
         }
     }
 
-    // @FXML
-    // private void addAnotherAssignmentButtonPress(ActionEvent event) {
-    //     TextField newAssignmentNameTextField = new TextField();
-    //     newAssignmentNameTextField.setPromptText("e.g. Test 1, Global Project");
-    //     newAssignmentNameTextField.getStyleClass().add("input-field");
-    //     newAssignmentNameTextField.setPrefWidth(250.0);
-    //     newAssignmentNameTextField.setId("enterAssignmentName-" + (addAnotherAssignmentRow - 1));
-    //     cumlativePointsInput.add(newAssignmentNameTextField, 0, addAnotherAssignmentRow);
+    private void loadAssignments() {
+        String line;
 
-    //     TextField newEarnedPointsTextField = new TextField();
-    //     newEarnedPointsTextField.setPromptText("e.g., 2.0, 23.5, 78, 100");
-    //     newEarnedPointsTextField.getStyleClass().add("input-field");
-    //     newEarnedPointsTextField.setPrefWidth(250.0);
-    //     newEarnedPointsTextField.setId("enterPointsEarned-" + (addAnotherAssignmentRow - 1));
-    //     cumlativePointsInput.add(newEarnedPointsTextField, 1, addAnotherAssignmentRow);
+        try (BufferedReader br = new BufferedReader(new FileReader(ASSIGNMENTS_FILE))) {
+            System.out.println("\n--- Collection of Assignments from CSV ---");
 
-    //     Text newPercentageText = new Text("/");
-    //     newPercentageText.getStyleClass().add("subtitle-text");
-    //     cumlativePointsInput.add(newPercentageText, 2, addAnotherAssignmentRow);
+            line = br.readLine();
+            String[] heading = line.split(DELIMITER);
 
-    //     TextField newPossiblePointsTextField = new TextField();
-    //     newPossiblePointsTextField.setPromptText("e.g., 2.0, 23.5, 78, 100");
-    //     newPossiblePointsTextField.getStyleClass().add("input-field");
-    //     newPossiblePointsTextField.setPrefWidth(250.0);
-    //     newPossiblePointsTextField.setId("enterPossiblePoints-" + (addAnotherAssignmentRow - 1));
-    //     cumlativePointsInput.add(newPossiblePointsTextField, 3, addAnotherAssignmentRow);
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(DELIMITER);
 
+                if (data.length >= 4) {
+                    String name = data[0].trim();
 
-    //     addAnotherAssignmentRow++;
-    //     GridPane.setRowIndex(addAnotherAssignmentButton, addAnotherAssignmentRow);
-    // }
+                    String category = data[1].trim();
+
+                    double earned = Double.parseDouble(data[2].trim());
+
+                    double possible = Double.parseDouble(data[3].trim());
+
+                    System.out.println(heading[0] + ": " + name + ", "
+                            + heading[1] + ": " + category + ", "
+                            + heading[2] + ": " + earned + ", "
+                            + heading[3] + ": " + possible);
+
+                    calculateGrade(earned, possible);
+                } else {
+                    System.err.println("Skipping malformed row: " + line);
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("Unable to Read Weight Category CSV \n");
+        }
+        System.out.println("------------------------\n");
+    }
+
+    private void calculateGrade(double earned, double possible) {
+        totalEarned += earned;
+        totalPossible += possible;
+    }
 
     // @FXML
     // private void calculateButtonPress(ActionEvent event) {
-    //     loadGradesIntoArray();
-    //     calculateAndDisplayGrade();
+    // loadGradesIntoArray();
+    // calculateAndDisplayGrade();
     // }
 
     // private void calculateAndDisplayGrade() {
-    //    double calculatedPossiblePoints, calculatedEarnedPoints, calcualtedGrade;
-    //    calculatedPossiblePoints = calculatedEarnedPoints = calcualtedGrade = 0;
+    // double calculatedPossiblePoints, calculatedEarnedPoints, calcualtedGrade;
+    // calculatedPossiblePoints = calculatedEarnedPoints = calcualtedGrade = 0;
 
-    //     for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
-    //         calculatedEarnedPoints += possibleEarned[i];
-    //         calculatedPossiblePoints += possiblePoints[i];
-    //     }
-
-    //     calcualtedGrade = calculatedEarnedPoints / calculatedPossiblePoints;
-
-
-    //     finaleGrade.setText(String.format("%.2f%%", calcualtedGrade));
-    //     totalPossiblePoints.setText(String.format("%.1f", calculatedPossiblePoints));
-    //     totalEarnedPoints.setText(String.format("%.1f", calculatedEarnedPoints));
+    // for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
+    // calculatedEarnedPoints += possibleEarned[i];
+    // calculatedPossiblePoints += possiblePoints[i];
     // }
 
-    // private void loadGradesIntoArray() {
-    //     assignmentNames = new String[addAnotherAssignmentRow];
-    //     possibleEarned = new Double[addAnotherAssignmentRow];
-    //     possiblePoints = new Double[addAnotherAssignmentRow];
+    // calcualtedGrade = calculatedEarnedPoints / calculatedPossiblePoints;
 
-    //     System.out.println("\n--- Collected Grades ---");
-    //     for (int i = 0; i < addAnotherAssignmentRow - 1; i++) {
-    //         TextField nameField = (TextField) cumlativePointsInput.lookup("#enterAssignmentName-" + i);
-    //         TextField earnedField = (TextField) cumlativePointsInput.lookup("#enterPointsEarned-" + i);
-    //         TextField possibleField = (TextField) cumlativePointsInput.lookup("#enterPossiblePoints-" + i);
-
-    //         String name = (nameField != null) ? nameField.getText() : "";
-    //         String earnedText = (earnedField != null) ? earnedField.getText() : "";
-    //         String possibleText = (possibleField != null) ? possibleField.getText() : "";
-
-    //         assignmentNames[i] = name;
-    //         try {
-    //             possibleEarned[i] = Double.parseDouble(earnedText);
-    //             possiblePoints[i] = Double.parseDouble(possibleText);
-    //         } catch (NumberFormatException e) {
-    //             System.err.println("Invalid number format for assignment in row " + i + ": " + e.getMessage());
-    //             possibleEarned[i] = 0.0; 
-    //             possiblePoints[i] = 0.0; 
-    //         }   
-        
-    //         System.out.println("Assignment: " + assignmentNames[i] +
-    //                            ", Earned: " + possibleEarned[i] +
-    //                            ", Possible: " + possiblePoints[i]);
-    //     }
-    //     System.out.println("------------------------\n");
+    // finaleGrade.setText(String.format("%.2f%%", calcualtedGrade));
+    // totalPossiblePoints.setText(String.format("%.1f", calculatedPossiblePoints));
+    // totalEarnedPoints.setText(String.format("%.1f", calculatedEarnedPoints));
     // }
-       
+
 }
