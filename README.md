@@ -123,4 +123,5 @@ The application's controllers now read from pre-defined `.csv` files to perform 
 4.  **Weighted Grade:**
     * The application reads the category weights from `category-weight.csv`.
     * It then reads all assignments from `assignment-grades.csv`.
-    * The total points for each
+    * The total points for each category are calculated to find the average, which is then multiplied by its corresponding weight from the `category-weight.csv` file.
+    * The total of all weighted averages and any extra credit points are added together to display the final weighted grade. 
