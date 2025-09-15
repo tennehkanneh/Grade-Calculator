@@ -1,88 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 
-<ScrollPane fx:controller="WeightedController"  hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" fitToWidth="true"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
-   <content>
-      <GridPane alignment="CENTER" >
-         <columnConstraints>
-            <ColumnConstraints hgrow="ALWAYS" />
-         </columnConstraints>
-   
-         <rowConstraints>
-            <RowConstraints percentHeight="20.0" valignment="TOP" vgrow="NEVER" />
-            <RowConstraints percentHeight="60.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints percentHeight="20.0" valignment="CENTER"  vgrow="NEVER" />
-         </rowConstraints>
-   
+<!--alignment="CENTER"-->
+<ScrollPane  fx:controller="WeightedController" vbarPolicy="AS_NEEDED" fitToWidth="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+    <content>
+        <VBox spacing="80" alignment="CENTER">
+            <children>
+                <!-- HEADER -->
+                <VBox spacing="10">
+                    <Button fx:id="backButton" onAction="#backButtonPress" text="Back" styleClass="button"/>
+                    <HBox alignment="CENTER">
+                        <children>
+                            <Text text="Grade Calculator" styleClass="title-text"/>
+                        </children>
+                    </HBox>
+                </VBox>
 
+                <!--Grade-->
+                <VBox>
+                    <HBox spacing="20" fx:id="finalCalculationsBox" alignment="CENTER">
+                        <children>
+                            <Text text="Final Grade: " styleClass="grade-label"/>
+                            <Text fx:id="finaleGradeText" text="- - . - -" styleClass="grade-text"/>
+                        </children>
 
-         <children>
-            <GridPane GridPane.rowIndex="0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" />
-               </columnConstraints>
+                        <padding>
+                            <Insets top="80.0" right="0" bottom="100.0" left="0" />
+                        </padding>
+                    </HBox>
+                </VBox>
+                <!--Reload Button-->
+                <Button fx:id="reloadButton" onAction="#reloadButtonPress" text="Reload Updated Grades" styleClass="button"/>
+            </children>
 
-               <rowConstraints>
-                  <RowConstraints valignment="TOP" vgrow="NEVER"  />
-                  <RowConstraints valignment="CENTER" vgrow="NEVER"  />
-               </rowConstraints>
-
-               <children>
-                  <Button fx:id="backButton" onAction="#backButtonPress" text="Back" GridPane.rowIndex="0" styleClass="button" />
-                  <VBox alignment="CENTER" GridPane.rowIndex="1">
-                     <children>
-                        <Text text="Grade Calculator" styleClass="title-text" />
-                        <HBox alignment="CENTER">
-                           <Label text="Finale Grade:" styleClass="input-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                           <Text fx:id="finaleGrade" text="--" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="subtitle-text" />
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children>
-            </GridPane>
-
-            <GridPane fx:id="weightedCategoryGride" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-               </columnConstraints>
-
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
-
-               <children>
-                  <Label text="Category" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
-                  <TextField fx:id="enterWeightCategory" id="enterWeightCategory-0" promptText="e.g. Test, Homework, Quiz" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
-
-                  <Label text="Earned Points Divided By Possible Points" wrapText="true" prefWidth="250." GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
-                  <TextField fx:id="enterPointsEarned" id="enterPointsEarned-0" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
-
-                  <Label text="Weight" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="subtitle-text" />
-                  <TextField fx:id="enterWeightPercentage" id="enterWeightPercentage-0" promptText="e.g., 2, 5, 20, 33, 45, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="input-field" />
-
-                  <Text text="\%" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="3" />
-
-                  <Button fx:id="addWeightCategoryButton" text="&#43; Add Another Category" onAction="#addWeightCategoryPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
-               </children>
-            </GridPane>
-
-            <Button fx:id="calculateButton" onAction="#calculateButtonPress" text="Calculate Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
-         </children>
-
-         <padding>
-            <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
-         </padding>
-      </GridPane>
-   </content>
+            <padding>
+                <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
+            </padding>
+        </VBox>
+    </content>
 </ScrollPane>

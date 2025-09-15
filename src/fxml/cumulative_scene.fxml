@@ -1,109 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 
-<ScrollPane fx:controller="CumulativeController" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" fitToWidth="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
-   <content>
+<!--alignment="CENTER"-->
+<ScrollPane  fx:controller="CumulativeController" vbarPolicy="AS_NEEDED" fitToWidth="true" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+    <content>
+        <VBox spacing="80" alignment="CENTER">
+            <children>
+                <!-- HEADER -->
+                <VBox spacing="10">
+                    <children>
+                        <Button fx:id="backButton" onAction="#backButtonPress" text="Back" styleClass="button"/>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Text text="Grade Calculator" styleClass="title-text"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
 
-      <GridPane alignment="CENTER" >
-         <columnConstraints>
-            <ColumnConstraints hgrow="ALWAYS" />
-         </columnConstraints>
-   
-         <rowConstraints>
-            <RowConstraints valignment="TOP" vgrow="NEVER" />
-            <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints valignment="BOTTOM"  vgrow="NEVER" />
-         </rowConstraints>
-   
+                <!--Grade & Points-->
+                <VBox>
+                    <children>
+                        <!--Grade-->
+                        <HBox spacing="20" fx:id="finalCalculationsBox" alignment="CENTER">
+                            <children>
+                                <Text text="Final Grade: " styleClass="grade-label"/>
+                                <Text fx:id="finaleGradeText" text="- - . - -" styleClass="grade-text"/>
+                            </children>
+                        </HBox>
 
-         <children>
-            <GridPane GridPane.rowIndex="0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" />
-               </columnConstraints>
+                        <!-- Points -->
+                        <HBox spacing="30" alignment="CENTER">
+                            <children>
+                                <!--Earned Points-->
+                                <HBox spacing="20" fx:id="earnedPointsBox" alignment="CENTER">
+                                    <children>
+                                        <Text text="Earned Points: " styleClass="input-label"/>
+                                        <Text fx:id="earnedPointsText" text="- -" styleClass="subtitle-text"/>
+                                    </children>
+                                </HBox>
 
-               <rowConstraints>
-                  <RowConstraints valignment="TOP" vgrow="NEVER"  />
-                  <RowConstraints valignment="CENTER" vgrow="NEVER"  />
-               </rowConstraints>
+                                <!-- Cumlative Points-->
+                                <HBox spacing="20" fx:id="cumlativePointsBox" alignment="CENTER">
+                                    <children>
+                                        <Text text="Earned Points: " styleClass="input-label"/>
+                                        <Text fx:id="cumlativePointsText" text="- -" styleClass="subtitle-text"/>
+                                    </children>
+                                </HBox>
 
-               <children>
-                  <Button fx:id="backButton" onAction="#backButtonPress" text="Back" GridPane.rowIndex="0" styleClass="button" />
-                  <VBox alignment="CENTER" GridPane.rowIndex="1">
-                     <children>
-                        <Text text="Grade Calculator" styleClass="title-text" />
-                        
-                        <GridPane hgap="10.0" vgap="15.0" alignment="TOP_LEFT">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="NEVER" halignment="RIGHT"/>
-                              <ColumnConstraints hgrow="ALWAYS" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                           </rowConstraints>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets top="10.0" right="0" bottom="140.0" left="0" />
+                    </padding>
+                </VBox>
 
-                           <Label text="Total Possible Points:" styleClass="input-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                           <Text fx:id="totalPossiblePoints" text="--" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
+                <!--Reload Button-->
+                <Button fx:id="reloadButton" onAction="#reloadButtonPress" text="Reload Updated Grades" styleClass="button"/>
+            </children>
 
-                           <Label text="Total Earned Points:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                           <Text fx:id="totalEarnedPoints" text="--" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="subtitle-text" />
-
-                           <Label text="Finale Grade:" styleClass="input-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                           <Text fx:id="finaleGrade" text="--" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="subtitle-text" />
-                        </GridPane>
-                     </children>
-                  </VBox>
-               </children>
-            </GridPane>
-
-            <GridPane fx:id="cumlativePointsInput" hgap="10.0" vgap="15.0" alignment="TOP_LEFT" GridPane.rowIndex="1">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER" />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-                  <ColumnConstraints hgrow="ALWAYS" halignment="CENTER"  />
-               </columnConstraints>
-
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
-
-               <children>
-                  <Label text="Assignment Name" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="subtitle-text" />
-                  <TextField fx:id="enterAssignmentName" id="enterAssignmentName-0" promptText="e.g. Test 1, Global Project" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="input-field" />
-
-                  <Label text="Points Earned" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
-                  <TextField fx:id="enterPointsEarned" id="enterPointsEarned-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="input-field" />
-
-                  <Text text="/" styleClass="subtitle-text" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-
-                  <Label text="Possible Points" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="subtitle-text" />
-                  <TextField fx:id="enterPossiblePoints" id="enterPossiblePoints-0" promptText="e.g., 2.0, 23.5, 78, 100" prefWidth="250.0" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="input-field" />
-         
-                  <Button fx:id="addAnotherAssignmentButton" text="&#43; Add Another Assignment" onAction="#addAnotherAssignmentButtonPress"  GridPane.rowIndex="2"  GridPane.columnIndex="0" styleClass="weight-button" />
-               </children>
-
-               <padding>
-                  <Insets top="20.0" bottom="20.0" />
-               </padding>
-            </GridPane>
-
-            <Button fx:id="calculateButton" onAction="#calculateButtonPress" text="Calculate Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
-         </children>
-
-         <padding>
-            <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
-         </padding>
-      </GridPane>
-   </content>
+            <padding>
+                <Insets top="20.0" right="50.0" bottom="20.0" left="50.0" />
+            </padding>
+        </VBox>
+    </content>
 </ScrollPane>

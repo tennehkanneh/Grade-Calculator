@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<!--- fx:controller="WeightedController" -->
+<ScrollPane  hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" fitToWidth="true"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-grid">
+   <content>
+      <GridPane  gridLinesVisible="true"  alignment="CENTER" >
+         <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" />
+         </columnConstraints>
+   
+         <rowConstraints>
+            <RowConstraints percentHeight="20.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints percentHeight="60.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints percentHeight="20.0" valignment="CENTER"  vgrow="NEVER" />
+         </rowConstraints>
+   
+
+
+         <children>
+            <GridPane gridLinesVisible="true"  GridPane.rowIndex="0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+
+               <rowConstraints>
+                  <RowConstraints valignment="TOP" vgrow="NEVER"  />
+                  <RowConstraints valignment="CENTER" vgrow="NEVER"  />
+               </rowConstraints>
+
+               <children>
+                  <Button fx:id="backButton" onAction="#backButtonPress" text="Back" GridPane.rowIndex="0" styleClass="button" />
+                  <VBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <Text text="Grade Calculator" styleClass="title-text" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+
+            <GridPane gridLinesVisible="true"    GridPane.rowIndex="1">
+               
+
+               <children>
+                  <Label text="Finale Grade:" styleClass="input-label"  />
+                  <Text fx:id="finalGrade" text="--" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="subtitle-text" />
+
+                  <Label text="Total Earned Points:" styleClass="input-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                  <Text fx:id="totalEarnedPoints" text="--" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="subtitle-text" />
+
+                  <Label text="Finale Grade:" styleClass="input-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+               </children>
+            </GridPane>
+
+            <Button fx:id="calculateButton" onAction="#calculateButtonPress" text="Calculate Your Grade" GridPane.halignment="CENTER" GridPane.rowIndex="2" styleClass="button"/>
+         </children>
+
+         
+      </GridPane>
+   </content>
+</ScrollPane>
